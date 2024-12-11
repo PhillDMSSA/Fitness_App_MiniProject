@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -6,10 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Media.Animation;
 using System.IO;
+using System.Net.WebSockets;
 
 namespace Fitness_App
 {
@@ -24,6 +27,15 @@ namespace Fitness_App
             InitializeComponent();
             addDataPage = new AddDataPage(); // Instantiate the pages
             calculatorPage = new CalculatorPage();
+        }
+        private void ButtonLogOff_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            MessageBox.Show("Logged off successful!");
+
+
+            this.Close(); //closest current window
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -48,24 +60,27 @@ namespace Fitness_App
                 MainFrame.Navigate(calculatorPage);
             }
         }
-        public void Button_AddData_Click(object sender, RoutedEventArgs e)
+        private void Button_AddData_Click(object sender, RoutedEventArgs e)
         {
             if (MainFrame.Content != addDataPage)
             {
                 MainFrame.Navigate(addDataPage);
             }
         }
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
         {
-            // Start fade -in animation on the WelcomeText
-            if (FindResource("FadeInAnimation") is Storyboard fadeIn)
-            {
-                fadeIn.Begin(WelcomeText);
-            }
-            else
-            {
-                MessageBox.Show("FadeInAnimation resource not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+        private void ButtonMinimixe_Click(object sender, RoutedEventArgs e) //minimize window
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void ButtonClose_Click(object sender, RoutedEventArgs e) //closes window
+        {
+            Application.Current.Shutdown();
+            MessageBox.Show("Error Occurred: You have been logged off!");
         }
     }
 }

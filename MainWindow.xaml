@@ -16,7 +16,7 @@
 
     <Border CornerRadius="10">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\orange.jpg"/>
+            <ImageBrush ImageSource="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\blue.jpg"/>
 
         </Border.Background>
         <Border CornerRadius="10"

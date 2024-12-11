@@ -10,15 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 
+
 namespace Fitness_App
 {
-    /// <summary>
-    /// Interaction logic for DataPage.xaml
-    /// </summary>
+   
     public partial class DataPage : Page
     {
         private const string filePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Data.txt";
@@ -68,16 +66,20 @@ namespace Fitness_App
         }
         private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService.CanGoBack)
+            if (NavigationService.CanGoBack == true)
             {
                 NavigationService.GoBack();  // Goes back to the previous page in the navigation stack
             }
             else
             {
-                // Navigate to MainWindow or another starting page if there's no back page
+                // Navigate to AdminWindow if there's no back page
                 AdminWindow adminWindow = new AdminWindow();
-                adminWindow.Show();  // Show MainWindow
-                
+                adminWindow.Show();
+
+                // Close the parent window of this Page
+                Window parentWindow = Window.GetWindow(this);
+                parentWindow?.Close();
+
             }
         }
     }
