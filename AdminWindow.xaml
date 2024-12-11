@@ -7,7 +7,51 @@
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Window.Resources>
+        <!-- Define the Storyboard -->
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         From="0" To="1" Duration="0:0:2" />
+        </Storyboard>
+
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="Black" BorderThickness="3" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="LightBlue">
+        <!-- Background for the banner -->
+        <Rectangle Fill="Black" Height="100" VerticalAlignment="Top" />
+
+        <!-- Welcome Text -->
+        <TextBlock x:Name="WelcomeText"
+               Text="Welcome To The Fitness App!"
+               FontSize="30"
+               FontWeight="Bold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               Margin="0,20,0,0" 
+               Opacity="0" />
+
+        <!-- Buttons -->
+
+        <Button Content="View Data" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_ViewChart_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+        <!-- Frame to hold dynamic pages -->
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,120,0,0"/>
     </Grid>
 </Window>

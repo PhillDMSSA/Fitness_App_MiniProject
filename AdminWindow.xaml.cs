@@ -14,14 +14,18 @@ using System.Windows.Shapes;
 
 namespace Fitness_App
 {
-    /// <summary>
-    /// Interaction logic for AdminWindow.xaml
-    /// </summary>
+    
     public partial class AdminWindow : Window
     {
+       
         public AdminWindow()
         {
             InitializeComponent();
+            
+        }
+        private void Button_ViewChart_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new DataPage());
         }
     }
 }
