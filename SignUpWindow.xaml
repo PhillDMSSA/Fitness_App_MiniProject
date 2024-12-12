@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:Fitness_App" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material"
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
-        Title="SignUpWindow" Height="450" Width="380"
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize">
-    
-    <Grid>
-       
+        Title="SignUpWindow" 
+        Height="450" Width="380"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStyle="None"
+        ResizeMode="NoResize">
 
+    <Grid>
 
         <Border CornerRadius="10" Grid.RowSpan="2">
             <Border.Background>

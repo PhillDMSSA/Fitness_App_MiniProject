@@ -73,7 +73,7 @@ namespace Fitness_App
             else
             {
                 // Navigate to AdminWindow if there's no back page
-                AdminWindow adminWindow = new AdminWindow();
+                AdminWindow adminWindow = new AdminWindow(new List<Dictionary<string, object>>()); // Pass an empty list for now);
                 adminWindow.Show();
 
                 // Close the parent window of this Page

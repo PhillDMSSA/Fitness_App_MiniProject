@@ -1,71 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Fitness_App
 {
-    /// <summary>
-    /// Interaction logic for SignUpWindow.xaml
-    /// </summary>
     public partial class SignUpWindow : Window
     {
-        private List<Dictionary<string,object>> Profiles {  get; set; } //user profiles 
-        private Dictionary<string, Dictionary<string, object>> UserDictionary { get; set; } 
+        private List<UserProfile> Profiles { get; set; }
+        private Dictionary<string, string> Users { get; set; }
+        private int UserIdCounter;
 
-        private int UserIdCounter = 1; //userID, will generate a userID upon signup
+        private const string ProfilesFilePath = "Profiles.txt";
+        private const string UsersFilePath = "Users.txt";
 
         public SignUpWindow()
         {
             InitializeComponent();
+
+            // Initialize or load data
+            Profiles = LoadFromFile<List<UserProfile>>(ProfilesFilePath) ?? new List<UserProfile>();
+            Users = LoadFromFile<Dictionary<string, string>>(UsersFilePath) ?? new Dictionary<string, string>();
+
+            // Set UserIdCounter to the next available ID
+            UserIdCounter = Profiles.Count > 0 ? Profiles.Count + 1 : 1;
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string firstName = FirstNameTextBox.Text;
-                string lastName = LastNameTextBox.Text;
-                int age;
-                if (!int.TryParse(AgeTextBox.Text, out age))
+                // Input validation
+                if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) ||
+                    string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
+                    string.IsNullOrWhiteSpace(GenderTextBox.Text) ||
+                    string.IsNullOrWhiteSpace(GoalTextBox.Text))
                 {
-                    MessageBox.Show("Please enter a valid age");
+                    MessageBox.Show("All fields are required.");
                     return;
                 }
-                string gender = GenderTextBox.Text;
-                int weight;
-                if (!int.TryParse(WeightTextBox.Text, out weight))
+
+                if (!int.TryParse(AgeTextBox.Text, out int age) || age <= 0)
                 {
-                    MessageBox.Show("Please enter a valid weight");
+                    MessageBox.Show("Please enter a valid age.");
                     return;
                 }
-                string goal = GoalTextBox.Text;
+
+                if (!int.TryParse(WeightTextBox.Text, out int weight) || weight <= 0)
+                {
+                    MessageBox.Show("Please enter a valid weight.");
+                    return;
+                }
+
+                // Generate unique username and password
                 string userID = "UID" + UserIdCounter++;
+                string username = $"{FirstNameTextBox.Text.ToLower()}.{LastNameTextBox.Text.ToLower()}";
+                string password = GenerateRandomPassword();
 
-                var profile = new Dictionary<string, object>
-            {
-                { "FirstName", firstName},
-                { "LastName", lastName},
-                { "Age", age},
-                { "Gender", gender},
-                { "Weight", weight},
-                { "Goal", goal},
-                { "UserID", userID},
+                // Create and save profile
+                var profile = new UserProfile
+                {
+                    FirstName = FirstNameTextBox.Text,
+                    LastName = LastNameTextBox.Text,
+                    Age = age,
+                    Gender = GenderTextBox.Text,
+                    Weight = weight,
+                    Goal = GoalTextBox.Text,
+                    UserID = userID
+                };
 
-            };
                 Profiles.Add(profile);
-                UserDictionary[userID] = profile;
+                Users[username] = password;
 
-                MessageBox.Show($"Profile created successfully! Your User ID is {userID}");
+                // Save data to files
+                SaveToFile(ProfilesFilePath, Profiles);
+                SaveToFile(UsersFilePath, Users);
+
+                MessageBox.Show($"Profile created successfully!\nYour User ID is {userID}\nUsername: {username}\nPassword: {password}");
 
                 ClearInputs();
             }
@@ -74,18 +86,65 @@ namespace Fitness_App
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}");
             }
         }
-        
+
         private void ClearInputs()
         {
-            FirstNameTextBox.Text = "";
-            LastNameTextBox.Text = "";
-            AgeTextBox.Text = "";
-            GenderTextBox.Text = "";
-            WeightTextBox.Text = "";
-            GoalTextBox.Text = "";
+            FirstNameTextBox.Clear();
+            LastNameTextBox.Clear();
+            AgeTextBox.Clear();
+            GenderTextBox.Clear();
+            WeightTextBox.Clear();
+            GoalTextBox.Clear();
         }
 
+        private static T LoadFromFile<T>(string filePath) where T : class
+        {
+            if (!File.Exists(filePath)) return null;
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<T>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        private static void SaveToFile<T>(string filePath, T data)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving data to file: {ex.Message}");
+            }
+        }
 
+        private static string GenerateRandomPassword(int length = 8)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            var password = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                password[i] = chars[random.Next(chars.Length)];
+            }
+            return new string(password);
+        }
+    }
+
+    public class UserProfile
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public int Weight { get; set; }
+        public string Goal { get; set; }
+        public string UserID { get; set; }
     }
 }

@@ -16,7 +16,7 @@ using System.Net.WebSockets;
 
 namespace Fitness_App
 {
-   
+
     public partial class UserWindow : Window
     {
         private AddDataPage addDataPage; // Declare the cached AddDataPage instance
@@ -67,7 +67,7 @@ namespace Fitness_App
                 MainFrame.Navigate(addDataPage);
             }
         }
-        
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
         {
             if (e.LeftButton == MouseButtonState.Pressed)

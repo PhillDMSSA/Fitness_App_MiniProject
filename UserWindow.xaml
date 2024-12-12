@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fitness_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="300"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -19,7 +19,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10" BorderBrush="LightBlue" BorderThickness="3" Background="{TemplateBinding Background}">
+                        <Border CornerRadius="10" BorderBrush="Orange" BorderThickness="3" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -32,68 +32,50 @@
     </Window.Resources>
     <Border CornerRadius="10">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\blue.jpg"/>
-
+            <LinearGradientBrush>
+                <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                <GradientStop Color="DarkOrange" Offset="1"/>
+            </LinearGradientBrush>
         </Border.Background>
-        <Border CornerRadius="10"
-        BorderThickness="5"
-            Opacity=".6">
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="LightBlue" Offset="0" />
-                    <GradientStop Color="DarkGray" Offset="0.75" />
-                    <GradientStop Color="blue" Offset="1" />
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="Blue" Offset="0" />
-                    <GradientStop Color="LightBlue" Offset="0.75" />
-                </LinearGradientBrush>
-            </Border.Background>
-
+       
             <Grid>
                 <!-- Minimize & Close Tabs-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" >
                     <Button x:Name="btnLogOff"
-                             Background="DarkGray"
+                             Background="Transparent"
                              BorderThickness="0"
                              Content="Log Off"
-                             Foreground="White"
-                             FontSize="10"
+                             Foreground="Black"
+                             FontSize="8"
                              Width="55"
                             FontWeight="Bold"
                              FontFamily="Montserrat" 
                              Cursor="Hand"
                              Grid.Column="3"
-                             Style="{StaticResource RoundedButtonStyle}"
                              Click="ButtonLogOff_Click"
-                             Margin="0,0,695,0">
+                             Margin="0,0,210,0">
                     </Button>
                     <Button x:Name="btnMinimize"
-                            Background="DarkGray"
+                            Background="Transparent"
                             BorderThickness="0"
                             Content="-"
-                            Foreground="White"
+                            Foreground="Black"
                             FontSize="24"
                             Width="20"
                             FontFamily="Montserrat" 
                             Cursor="Hand"
                             Grid.Column="1"
-                             Style="{StaticResource RoundedButtonStyle}"
                             Click="ButtonMinimixe_Click"
                             VerticalAlignment="Center">
                     </Button>
                     <Button x:Name="btnClose"
-                            Background="DarkGray"
+                            Background="Transparent"
                             BorderThickness="0"
                             Content="X"
-                            Foreground="White"
+                            Foreground="Black"
                             FontSize="13"
                             Width="20"
                             FontFamily="Montserrat" 
-                             Style="{StaticResource RoundedButtonStyle}"
                             Cursor="Hand"
                             Grid.Column="2"
                             Click="ButtonClose_Click">
@@ -103,13 +85,13 @@
 
                 <!-- Buttons -->
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Calculator Page" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Calculator Page" Click="Button_Calculator_Click" />
-                    <Button Content="Upload Data" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Data Upload Page" Click="Button_AddData_Click" Margin="0,10,0,0" />
+                    <Button Content="Calculator Page"  FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Calculator Page" Click="Button_Calculator_Click" />
+                <Button Content="Upload Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Data Upload Page" Click="Button_AddData_Click" Margin="0,5,0,0" />
                 </StackPanel>
 
                 <!-- Frame to hold dynamic pages -->
                 <Frame Name="MainFrame" NavigationUIVisibility="Hidden" />
             </Grid>
-        </Border>
+        
     </Border>
 </Window>

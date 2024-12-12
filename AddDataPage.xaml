@@ -5,19 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitness_App"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
+      d:DesignHeight="450" d:DesignWidth="300"
       Title="AddDataPage">
+    
+    <Border CornerRadius="10">
 
-    <Grid Background="LightBlue">
+       
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
-        <Grid.RowDefinitions>
+
+       <Grid >
+
+         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <!-- Fill the available space -->
             <RowDefinition Height="Auto" />
             <!-- Fixed height for bottom area -->
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="450">
+        <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
             <!-- FirstName Input -->
             <TextBlock Text="{}Enter your First Name:" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -43,17 +54,27 @@
 
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1">
-            <!-- Save Button -->
-            <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" Margin="2.5,0"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
+                <!-- Back Button -->
+                <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <!-- Save Button -->
+            <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" />
 
             <!-- Clear Button -->
-            <Button Content="Clear" Width="65" Height="25" Margin="2.5,10" Click="ClearButton_Click"/>
+            <Button Content="Clear" Width="65" Height="25"  Click="ClearButton_Click"/>
         </StackPanel>
 
-        <!-- Back Button -->
-        <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Margin="12,0,0,0"/>
+            <!-- Background for the banner-->
+            <Rectangle Fill="Black" Height="65" VerticalAlignment="Top" Width="300" HorizontalAlignment="Center"/>
+
+            <!-- Add Background-->
+            <TextBlock Text="Enter your workout data!!" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,25,0,0"/>
 
 
-    </Grid>
+
+
+
+        </Grid>
+   </Border>
 </Page>

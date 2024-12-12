@@ -23,8 +23,9 @@ namespace Fitness_App
         public Profiles(List<Dictionary<string, object>> profiles_Users)
         {
             InitializeComponent();
-            Profiles_Users = profiles_Users;
 
+            // Ensure Profiles_Users is not null
+            Profiles_Users = profiles_Users;
             // Bind profiles to the DataGrid
             UserProfiles.ItemsSource = ConvertProfilesToDisplayableList();
         }
@@ -33,7 +34,8 @@ namespace Fitness_App
         {
             var displayList = new List<object>();
 
-            foreach(var user in Profiles_Users)
+            // Convert dictionary data to a displayable object
+            foreach (var user in Profiles_Users)
             {
                 displayList.Add(new
                 {

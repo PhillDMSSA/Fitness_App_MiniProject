@@ -5,10 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitness_App"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="300"
       Title="CalculatorPage">
 
-    <Grid Background="LightBlue" >
+    <Border CornerRadius="10">
+
+        <Border CornerRadius="10">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+            <Grid >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -18,43 +29,48 @@
         </Grid.RowDefinitions>
 
         <!-- Background for the banner-->
-        <Rectangle Fill="Black" Height="100" VerticalAlignment="Top" />
+        <Rectangle Fill="Black" Height="65" VerticalAlignment="Top" Width="300" HorizontalAlignment="Center"/>
 
         <!-- Add Background-->
-        <TextBlock Text="Calories Burned Calculator" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,25,0,0"/>
+        <TextBlock Text="Calories Burned Calculator" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,25,0,0"/>
 
         <!-- Create a StackPanel to arrange the fields vertically -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="450">
 
             <!-- User input for weight -->
-            <TextBlock Text="Enter your weight (lbs):" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Text="Weight (lbs):" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox Name="WeightTextBox" Width="250" Height="18" TextAlignment="Center" VerticalContentAlignment="Center"/>
 
             <!-- User input for duration -->
-            <TextBlock Text="Enter workout duration (minutes):" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Text="Duration (minutes):" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox Name="DurationTextBox" Width="250" Height="18" TextAlignment="Center" VerticalContentAlignment="Center"/>
 
             <!-- User input for intensity -->
-            <TextBlock Text="Enter workout intensity:" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
-            <TextBlock Text="1:Easy 2:Moderate  3:Vigorous" FontWeight="Bold" HorizontalAlignment="Center" FontSize="13" Foreground="DimGray"/>
+            <TextBlock Text="Workout intensity:" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBlock Text="1:Easy 2:Moderate  3:Vigorous" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12" Foreground="DimGray"/>
             <TextBox Name="IntensityTextBox" Width="250" Height="18" TextAlignment="Center" VerticalContentAlignment="Center"/>
 
 
 
             <!-- Output result -->
-            <TextBlock Name="ResultTextBlock" FontSize="18" HorizontalAlignment="Center" />
+            <TextBlock Name="ResultTextBlock" FontSize="15" HorizontalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1">
-            <!-- Calculate Button -->
-            <Button Content="Calculate" Width="65" Height="25" Click="CalculateButton_Click" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,0,5">
+             <!-- Back Button-->
+             <Button Content="Back" Width="65" Height="25" Grid.Row="1" Click="BackButtonCal_Click" />
+             <!-- Calculate Button -->
+                    <Button Content="Calculate" Width="65" Height="25" Click="CalculateButton_Click" Margin="15,0,0,0"/>
             <!-- Clear Button -->
-            <Button Content="Clear" Width="65" Height="25" Margin="2.5,10" Click="ClearButtonCal_Click"/>
-        </StackPanel>
-        <!-- Back Button-->
-        <Button Content="Back" Width="65" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Row="1" Click="BackButtonCal_Click" Margin="12,0,0,0"/>
+            <Button Content="Clear" Width="65" Height="25" Click="ClearButtonCal_Click" Margin="15,0,0,0"/>
+                    
+             </StackPanel>
+     
+        
 
 
 
-    </Grid>
+            </Grid>
+        </Border>
+    </Border>
 </Page>

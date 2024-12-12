@@ -6,21 +6,20 @@
         xmlns:local="clr-namespace:Fitness_App"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AdminWindow" Height="450" Width="800"
+        Title="AdminWindow" Height="450" Width="300"
         WindowStyle="None"
         ResizeMode="NoResize"
-
         Background="Transparent"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown" >
-    <Window.Resources>
+        MouseDown="Window_MouseDown">
 
+    <Window.Resources>
         <!-- Button Style -->
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10" BorderBrush="LightBlue" BorderThickness="3" Background="{TemplateBinding Background}">
+                        <Border CornerRadius="10" BorderBrush="Orange" BorderThickness="2" Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
@@ -31,92 +30,66 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </Window.Resources>
-    
+
     <Border CornerRadius="10">
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\blue.jpg"/>
-
-        </Border.Background>
-        <Border CornerRadius="10"
-        BorderThickness="5"
-            Opacity="0.6">
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="LightBlue" Offset="0" />
-                    <GradientStop Color="DarkGray" Offset="0.75" />
-                    <GradientStop Color="blue" Offset="1" />
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="Blue" Offset="0" />
-                    <GradientStop Color="LightBlue" Offset="0.75" />
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
-
-
-
             <Grid>
                 <!-- Minimize & Close Tabs-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                     <Button x:Name="btnLogOff"
-                             Background="DarkGray"
-                             BorderThickness="0"
-                             Content="Log Off"
-                             Foreground="White"
-                             FontSize="10"
-                             Width="55"
+                            Background="Transparent"
+                            Content="Log Off"
+                            Foreground="Black"
+                            FontSize="8"
+                            Width="55"
                             FontWeight="Bold"
-                             FontFamily="Montserrat" 
-                             Cursor="Hand"
-                             Grid.Column="3"
-                             Style="{StaticResource RoundedButtonStyle}"
-                             Click="ButtonLogOff_Click"
-                             Margin="0,0,695,0">    
-                    </Button>
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Click="ButtonLogOff_Click"
+                            Margin="0,0,210,0"
+                            BorderThickness="0"/>
                     <Button x:Name="btnMinimize"
-                            Background="DarkGray"
+                            Background="Transparent"
                             BorderThickness="0"
                             Content="-"
-                            Foreground="White"
+                            Foreground="black"
                             FontSize="24"
                             Width="20"
-                            FontFamily="Montserrat" 
+                            FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="1"
-                             Style="{StaticResource RoundedButtonStyle}"
                             Click="ButtonMinimixe_Click"
-                            VerticalAlignment="Center"> 
-                    </Button>
+                            VerticalAlignment="Center"/>
                     <Button x:Name="btnClose"
-                            Background="DarkGray"
+                            Background="Transparent"
                             BorderThickness="0"
                             Content="X"
-                            Foreground="White"
+                            Foreground="Black"
                             FontSize="13"
                             Width="20"
-                            FontFamily="Montserrat" 
+                            FontFamily="Montserrat"
                             Cursor="Hand"
-                            Grid.Column="2"
-                             Style="{StaticResource RoundedButtonStyle}"
-                            Click="ButtonClose_Click">      
-                    </Button>
-                    
+                            Click="ButtonClose_Click"
+                            Margin="0,0,0,-1.5"/>
                 </StackPanel>
 
                 <!-- Buttons -->
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Button Content="User Data" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Button Content="User Profiles" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Profiles_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0" />
-
+                    <Button Content="User Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center"/>
+                    <Button Content="User Profiles" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Profiles_Click" HorizontalAlignment="Center" Margin="0,5"/>
                 </StackPanel>
 
+                <!-- Panel for Profile Buttons -->
+                <StackPanel x:Name="ButtonPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0"/>
 
                 <!-- Frame to hold dynamic pages -->
                 <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,120,0,0"/>
             </Grid>
-        </Border>
+        
     </Border>
 </Window>

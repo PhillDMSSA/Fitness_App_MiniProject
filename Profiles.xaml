@@ -10,7 +10,6 @@
 
     <Grid Margin="10">
 
-        <DataGrid x:Name="UserProfiles" AutoGenerateColumns="True" IsReadOnly="True" />
-
+        <DataGrid Name="UserProfiles" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" AutoGenerateColumns="True" />
     </Grid>
 </Page>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fitness_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" 
+        Height="450" Width="300"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -15,61 +16,54 @@
 
 
     <Border CornerRadius="10">
-        <Border.Background>
-            <ImageBrush ImageSource="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\blue.jpg"/>
-
-        </Border.Background>
-        <Border CornerRadius="10"
-            BorderThickness="5"
-                Opacity="0.6">
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="LightBlue" Offset="0" />
-                    <GradientStop Color="DarkGray" Offset="0.75" />
-                    <GradientStop Color="blue" Offset="1" />
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-
+        
+        <Border CornerRadius="10">
             <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="Blue" Offset="0" />
-                    <GradientStop Color="LightBlue" Offset="0.75" />
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
 
             <Grid>
+                <Image Source="C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\Images\Workout.Photo.jpg" Width="300" Height="200" VerticalAlignment="Top" Margin="0,35,0,0"/>
+
+
                 <!-- Minimize & Close Tabs-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" >
                     <Button x:Name="btnMinimize"
-                            Background="DarkGray"
                             BorderThickness="0"
                             Content="-"
-                            Foreground="White"
+                            Foreground="Black"
                             FontSize="24"
                             Width="20"
                             FontFamily="Montserrat" 
                             Cursor="Hand"
                             Grid.Column="1"
                             Click="ButtonMinimixe_Click"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Background="Transparent"
+                            Margin="0,0,0,2.5">
                     </Button>
                     <Button x:Name="btnClose"
-                            Background="DarkGray"
                             BorderThickness="0"
                             Content="X"
-                            Foreground="White"
+                            Foreground="Black"
+                            FontWeight="Bold"
                             FontSize="13"
                             Width="20"
                             FontFamily="Montserrat" 
                             Cursor="Hand"
                             Grid.Column="2"
+                            Background="Transparent"
                             Click="ButtonClose_Click">
                     </Button>
                 </StackPanel>
                 
                 <!--Login/Sign Up Tabs -->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,165,0,0">
                     <TextBox Name="UsernameTextBox"
                              Height="20"
                              Width="120"
@@ -88,7 +82,7 @@
                              
                 </StackPanel>
                 <!--Username-->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,165,0,0">
                     <TextBlock   Text="Username"
                              Height="20"
                              Width="60"
@@ -109,12 +103,10 @@
                               Margin="-195,0,0,0"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,70,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,240,0,0">
                     <Button x:Name="LoginInButton"
-                            Background="DarkGray"
                             BorderThickness="0"
                             Content="Sign In"
-                            FontWeight="Bold"
                             Foreground="Black"
                             FontSize="12"
                             Width="50"
@@ -123,10 +115,8 @@
                             Grid.Column="1"
                             Click="LogInButton_Click"/>
                     <Button x:Name="SignUpButton"
-                            Background="DarkGray"
                             BorderThickness="0"
                             Content="Sign Up"
-                            FontWeight="Bold"
                             Foreground="Black"
                             FontSize="12"
                             Width="50"
