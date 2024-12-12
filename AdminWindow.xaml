@@ -103,10 +103,15 @@
                              Style="{StaticResource RoundedButtonStyle}"
                             Click="ButtonClose_Click">      
                     </Button>
+                    
                 </StackPanel>
 
                 <!-- Buttons -->
-                <Button Content="View Data" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_ViewChart_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Button Content="User Data" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Content="User Profiles" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Profiles_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0" />
+
+                </StackPanel>
 
 
                 <!-- Frame to hold dynamic pages -->

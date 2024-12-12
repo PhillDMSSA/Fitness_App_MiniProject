@@ -3,11 +3,72 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fitness_App"
+        xmlns:local="clr-namespace:Fitness_App" xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material"
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
-        Title="SignUpWindow" Height="450" Width="800">
+        Title="SignUpWindow" Height="450" Width="380"
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" ResizeMode="NoResize">
+    
     <Grid>
-        
+       
+
+
+        <Border CornerRadius="10" Grid.RowSpan="2">
+            <Border.Background>
+                <LinearGradientBrush>
+                <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                <GradientStop Color="DarkOrange" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Image Source="Images/Workout.Photo.jpg" Width="200" />
+            <TextBlock Text=" Sign Up Today, Get Fit Now!"
+                       FontWeight="Bold"
+                       FontFamily="helvetica"
+                       FontSize="22"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,5"/>
+        </StackPanel>
+
+        <StackPanel  VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <TextBlock Text="First Name:"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="FirstNameTextBox"
+                     Width="150"/>
+
+            <TextBlock Text="Last Name:" 
+                        HorizontalAlignment="Center"/>
+            <TextBox x:Name="LastNameTextBox"
+                      Width="150"/>
+
+            <TextBlock Text="Age:" 
+                        HorizontalAlignment="Center"/>
+            <TextBox x:Name="AgeTextBox" 
+                      Width="150"/>
+
+            <TextBlock Text="Gender:" 
+                        HorizontalAlignment="Center"/>
+            <TextBox x:Name="GenderTextBox"
+                      Width="150"/>
+
+            <TextBlock Text="Weight:" 
+                        HorizontalAlignment="Center"/>
+            <TextBox x:Name="WeightTextBox" 
+                      Width="150"/>
+
+            <TextBlock Text="Goal:" 
+                        HorizontalAlignment="Center"/>
+            <TextBox x:Name="GoalTextBox" 
+                      Width="150"
+                     Height="35"/>
+
+            <Button Content="Sign Up" Click="SignUpButton_Click" Margin="0,10,0,0" VerticalAlignment="Bottom" 
+                     Width="100"/>
+        </StackPanel>
+        <!-- Frame to hold dynamic pages -->
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -11,22 +11,44 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using Fitness_App;
 
 namespace Fitness_App
 {
     
     public partial class AdminWindow : Window
     {
-       
+        private List<Dictionary<string, object>> Profiles_Users;
+
         public AdminWindow()
         {
             InitializeComponent();
-            
+            // Initialize the list with sample data
+            Profiles_Users = new List<Dictionary<string, object>>();
+
+            // Example of adding a profile
+            Profiles_Users.Add(new Dictionary<string, object>
+        {
+            { "UserID", 1 },
+            { "FirstName", "John" },
+            { "LastName", "Doe" },
+            { "Age", 30 },
+            { "Gender", "Male" },
+            { "Weight", 180 },
+            { "Goal", "Lose weight" }
+        });
+
         }
-        private void Button_ViewChart_Click(object sender, RoutedEventArgs e)
+        private void Button_Data_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new DataPage());
 
+        }
+        private void Button_Profiles_Click(object sender, RoutedEventArgs e)
+        {
+            // Pass the Profiles_Users list to the Profiles page
+            MainFrame.Navigate(new Profiles(Profiles_Users));
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
         {
