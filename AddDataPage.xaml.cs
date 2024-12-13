@@ -63,9 +63,10 @@ namespace Fitness_App
 
         private void ClearFormFields() //clears fields
         {
-            FirstNameTextBox.Clear();
-            LastNameTextBox.Clear();
+            FullNameTextBox.Clear();
+            BurnedCaloriesTextBox.Clear();
             UserInputTextBox.Clear();
+            DateTextBox.Clear();
             WorkoutComboBox.SelectedIndex = -1; // Deselect any selected item
         }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -76,7 +77,8 @@ namespace Fitness_App
                 // Get the workout type as a string (the content of the selected ComboBoxItem)
                 string workoutType = (WorkoutComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-                string dataToSave = $"{FirstNameTextBox.Text},{LastNameTextBox.Text},{workoutType},{UserInputTextBox.Text}";
+
+                string dataToSave = $"{FullNameTextBox.Text},{BurnedCaloriesTextBox.Text},{workoutType},{DateTextBox.Text},{UserInputTextBox.Text}";
 
                 // Save the content of the TextBox to the file
                 File.AppendAllText(FilePath, dataToSave + Environment.NewLine); //isstead of writing over data its creates a new line 

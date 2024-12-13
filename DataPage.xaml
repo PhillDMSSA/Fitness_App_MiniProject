@@ -53,7 +53,7 @@
             <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="True"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       Margin="10" Background="LightGray" BorderBrush="White"
-                      BorderThickness="1" AlternatingRowBackground="LightBlue" FontWeight="Bold"/>
+                      BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold"/>
         </Border>
         <!-- Back Button -->
         <Button Content="Back" Width="40" Height="25" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="10"/>

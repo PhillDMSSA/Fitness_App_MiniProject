@@ -47,10 +47,12 @@ namespace Fitness_App
                         var fields = line.Split(',');
                         return new DataEntry
                         {
-                            FirstName = fields.ElementAtOrDefault(0),
-                            LastName = fields.ElementAtOrDefault(1),
+                            FullName = fields.ElementAtOrDefault(0),
+                            BurnedCalories = fields.ElementAtOrDefault(1),
                             WorkoutType = fields.ElementAtOrDefault(2),
-                            Notes = fields.ElementAtOrDefault(3)
+                            WorkoutDate = fields.ElementAtOrDefault(3),
+                            Notes = fields.ElementAtOrDefault(4)
+
                         };
                     })
                     .ToList();
@@ -87,9 +89,10 @@ namespace Fitness_App
     }
     public class DataEntry
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string BurnedCalories { get; set; }
         public string WorkoutType { get; set; }
         public string Notes { get; set; }
+        public string WorkoutDate { get; set; }
     }
 }

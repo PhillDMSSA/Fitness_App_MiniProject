@@ -31,26 +31,31 @@
         <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
             <!-- FirstName Input -->
-            <TextBlock Text="{}Enter your First Name:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBox Name="FirstNameTextBox" Width="200" Margin="0,10"/>
+            <TextBlock Text="Enter Full Name:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="FullNameTextBox" Width="200" Margin="0,5"/>
 
             <!-- LastName Input -->
-            <TextBlock Text="Enter your Last Name:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBox Name="LastNameTextBox" Width="200" Margin="0,10"/>
+            <TextBlock Text="Enter Calories Burned:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="BurnedCaloriesTextBox" Width="200" Margin="0,5"/>
 
             <!-- Workout Selection -->
             <TextBlock Text="Select Workout Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,10">
+            <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5">
                 <ComboBoxItem Content="Chest"/>
                 <ComboBoxItem Content="Back"/>
                 <ComboBoxItem Content="Triceps"/>
                 <ComboBoxItem Content="Biceps"/>
                 <!-- Add more workout options as needed -->
             </ComboBox>
+            
+            <!-- Date Of Workout -->
+                <TextBlock Text="Enter Date of Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="DDMMMYYYY" FontWeight="Light" FontSize="8" HorizontalAlignment="Center"/>
+                <TextBox Name="DateTextBox" Width="200" Margin="0,5"/>
 
-            <!-- User Input Data -->
-            <TextBlock Text="Enter additional notes or data:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBox Name="UserInputTextBox" Width="200" Margin="0,10"/>
+                <!-- User Input Data -->
+            <TextBlock Text="Additional Notes:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="UserInputTextBox" Width="200" Margin="0,5"/>
 
         </StackPanel>
 
