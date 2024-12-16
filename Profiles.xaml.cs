@@ -44,7 +44,7 @@ namespace Fitness_App
 
             try
             {
-                // Read all profiles from JSON
+                // Read all profiles from .txt
                 var profiles = ProfileLoader.LoadProfiles(filePath);
 
                 // Bind profiles to the DataGrid
@@ -80,12 +80,46 @@ namespace Fitness_App
     
     public static class ProfileLoader
     {
+        // Load profiles from the plain text file
         public static List<Profile> LoadProfiles(string filePath)
         {
-            string json = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<Profile>>(json) ?? new List<Profile>();
+            var profiles = new List<Profile>();
+
+            // Read the file line by line
+            foreach (var line in File.ReadLines(filePath))
+            {
+                try
+                {
+                    // Split the line by the '|' delimiter
+                    var fields = line.Split('|');
+                    if (fields.Length == 7) // Ensure the correct number of fields
+                    {
+                        profiles.Add(new Profile
+                        {
+                            FirstName = fields[0],
+                            LastName = fields[1],
+                            Age = fields[2],
+                            Gender = fields[3],
+                            Weight = fields[4],
+                            Goal = fields[5],
+                            UserID = fields[6]
+                        });
+                    }
+                    else
+                    {
+                        throw new FormatException("Invalid data format in profile file.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error processing line: {line}\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
+            return profiles;
         }
     }
+}
     public class Profile
     {
         public string FirstName { get; set; }
@@ -96,6 +130,6 @@ namespace Fitness_App
         public string Goal { get; set; }
         public string UserID { get; set; }
     }
-}
+
 
 

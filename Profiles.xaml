@@ -65,7 +65,8 @@
                     <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
                     <DataGridTextColumn Header="Weight" Binding="{Binding Weight}" />
                     <DataGridTextColumn Header="Goal" Binding="{Binding Goal}" />
-                </DataGrid.Columns>
+                    <DataGridTextColumn Header="User ID" Binding="{Binding UserID}" />
+                    </DataGrid.Columns>
             </DataGrid>
             </ScrollViewer>
         </Border>

@@ -9,7 +9,7 @@ namespace Fitness_App
     public partial class MainWindow : Window
     {
         private Dictionary<string, string> Users = new Dictionary<string, string>();
-        private const string UserAndPassFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt";
+        private const string UserAndPassFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt"; //User name and password file path
         private const string ProfilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt"; // Corrected file path for profiles
 
         public MainWindow()
@@ -18,7 +18,7 @@ namespace Fitness_App
             LoadUsers(); // Load users from the file when the app starts
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) //able to move app around the screen
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
@@ -27,7 +27,7 @@ namespace Fitness_App
         // Load users from the file
         private void LoadUsers()
         {
-            if (File.Exists(UserAndPassFilePath))
+            if (File.Exists(UserAndPassFilePath)) //checks if file exist 
             {
                 var lines = File.ReadAllLines(UserAndPassFilePath);
                 foreach (var line in lines)
@@ -177,9 +177,9 @@ namespace Fitness_App
                             { "UserID", parts[0] },
                             { "FirstName", parts[1] },
                             { "LastName", parts[2] },
-                            { "Age", int.Parse(parts[3]) },
+                            { "Age", parts[3] },
                             { "Gender", parts[4] },
-                            { "Weight", int.Parse(parts[5]) },
+                            { "Weight",parts[5] },
                             { "Goal", parts[6] }
                         };
                         profiles.Add(profile);

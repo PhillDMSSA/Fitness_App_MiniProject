@@ -1,3 +1,1 @@
 Phillip|Deleon|27|Male|195|Get in shape|UID1
-Admin|user|100|n/a|1|.|UID2
-Jane|Doe|26|Female|135|Get FIt!!|UID3

@@ -39,7 +39,7 @@ namespace Fitness_App
                     MessageBox.Show("All fields are required.");
                     return;
                 }
-
+                /*
                 if (!int.TryParse(AgeTextBox.Text, out int age) || age <= 0)
                 {
                     MessageBox.Show("Please enter a valid age.");
@@ -51,7 +51,7 @@ namespace Fitness_App
                     MessageBox.Show("Please enter a valid weight.");
                     return;
                 }
-
+                */
                 // Generate unique username and password
                 string userID = "UID" + UserIdCounter++;
                 string username = $"{FirstNameTextBox.Text.ToLower()}.{LastNameTextBox.Text.ToLower()}";
@@ -62,9 +62,9 @@ namespace Fitness_App
                 {
                     FirstName = FirstNameTextBox.Text,
                     LastName = LastNameTextBox.Text,
-                    Age = age,
+                    Age = AgeTextBox.Text,
                     Gender = GenderTextBox.Text,
-                    Weight = weight,
+                    Weight = WeightTextBox.Text,
                     Goal = GoalTextBox.Text,
                     UserID = userID
                 };
@@ -113,9 +113,9 @@ namespace Fitness_App
                         {
                             FirstName = parts[0],
                             LastName = parts[1],
-                            Age = int.Parse(parts[2]),
+                            Age = parts[2],
                             Gender = parts[3],
-                            Weight = int.Parse(parts[4]),
+                            Weight = parts[4],
                             Goal = parts[5],
                             UserID = parts[6]
                         };
@@ -211,9 +211,9 @@ namespace Fitness_App
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string Gender { get; set; }
-        public int Weight { get; set; }
+        public string Weight { get; set; }
         public string Goal { get; set; }
         public string UserID { get; set; }
     }
