@@ -8,12 +8,12 @@ namespace Fitness_App
 {
     public partial class SignUpWindow : Window
     {
-        private List<UserProfile> Profiles { get; set; }
-        private Dictionary<string, string> Users { get; set; }
+        private List<UserProfile> Profiles { get; set; } //Profile list created from the proporties in UserProfiles windwow
+        private Dictionary<string, string> Users { get; set; } //List for users and their passowords 
         private int UserIdCounter;
 
-        private const string ProfilesFilePath = "Profiles.txt";
-        private const string UsersFilePath = "Users.txt";
+        private const string ProfilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt";
+        private const string UsersFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt";
 
         public SignUpWindow()
         {

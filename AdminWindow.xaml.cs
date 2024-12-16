@@ -24,7 +24,7 @@ namespace Fitness_App
         private void Button_Profiles_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to Profiles Page
-            MainFrame.Navigate(new Profiles(Profiles));
+            MainFrame.Navigate(new Profiles());
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

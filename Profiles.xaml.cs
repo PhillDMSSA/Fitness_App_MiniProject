@@ -13,43 +13,89 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Net.Cache;
+using System.Transactions;
+using Newtonsoft.Json;
 
 namespace Fitness_App
 {
-    
+
     public partial class Profiles : Page
     {
-        private List<Dictionary<string, object>> Profiles_Users;
-        public Profiles(List<Dictionary<string, object>> profiles_Users)
+        
+         public Profiles()
         {
             InitializeComponent();
+            LoadProfiles();
 
-            // Ensure Profiles_Users is not null
-            Profiles_Users = profiles_Users;
-            // Bind profiles to the DataGrid
-            UserProfiles.ItemsSource = ConvertProfilesToDisplayableList();
+
         }
-       
-        private List<object> ConvertProfilesToDisplayableList()
-        {
-            var displayList = new List<object>();
 
-            // Convert dictionary data to a displayable object
-            foreach (var user in Profiles_Users)
+        private void LoadProfiles()
+        {
+            string filePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt";
+
+            // Ensure file exists
+            if (!File.Exists(filePath))
             {
-                displayList.Add(new
-                {
-                    UserID = user["UserID"],
-                    FirstName = user["FirstName"],
-                    LastName = user["LastName"],
-                    Age = user["Age"],
-                    Gender = user["Gender"],
-                    Weight = user["Weight"],
-                    Goal = user["Goal"]
-                });
+                MessageBox.Show("Profiles file not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                // Read all profiles from JSON
+                var profiles = ProfileLoader.LoadProfiles(filePath);
+
+                // Bind profiles to the DataGrid
+                ProfilesDataGrid.ItemsSource = profiles;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading profiles: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack == true)
+            {
+                NavigationService.GoBack();  // Goes back to the previous page in the navigation stack
+            }
+            else
+            {
+                // Navigate to AdminWindow if there's no back page
+                AdminWindow adminWindow = new AdminWindow(new List<Dictionary<string, object>>()); // Pass an empty list for now);
+                adminWindow.Show();
+
+                // Close the parent window of this Page
+                Window parentWindow = Window.GetWindow(this);
+                parentWindow?.Close();
 
             }
-             return displayList;
+        }
+
+
+    }
+    
+    public static class ProfileLoader
+    {
+        public static List<Profile> LoadProfiles(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<Profile>>(json) ?? new List<Profile>();
         }
     }
+    public class Profile
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Age { get; set; }
+        public string Gender { get; set; }
+        public string Weight { get; set; }
+        public string Goal { get; set; }
+        public string UserID { get; set; }
+    }
 }
+
+

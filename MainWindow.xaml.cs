@@ -9,7 +9,7 @@ namespace Fitness_App
     public partial class MainWindow : Window
     {
         private Dictionary<string, string> Users = new Dictionary<string, string>();
-        private const string UserAndPassFilePath = @"Z:\Documents\MSSA\Projects\Calorie Burner Calculator\TXT\UserName_Passwords.txt";
+        private const string UserAndPassFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt";
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace Fitness_App
             if (File.Exists(UserAndPassFilePath))
             {
                 var lines = File.ReadAllLines(UserAndPassFilePath);
+                //Users.Clear();
                 foreach (var line in lines)
                 {
                     var parts = line.Split(';');
@@ -51,8 +52,9 @@ namespace Fitness_App
                 Users.Add("admin", "admin123");
             if (!Users.ContainsKey("user1"))
                 Users.Add("user1", "user123");
+           
         }
-
+    
         // Save users to the file
         private void SaveUsers()
         {
@@ -61,7 +63,7 @@ namespace Fitness_App
             {
                 lines.Add($"{user.Key};{user.Value}");
             }
-            File.WriteAllLines("UserAndPassFilePath", lines);
+            File.WriteAllLines(UserAndPassFilePath, lines);
         }
 
         private void ButtonMinimixe_Click(object sender, RoutedEventArgs e) // Minimize window
@@ -76,67 +78,97 @@ namespace Fitness_App
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = UsernameTextBox.Text;
-            string password = PasswordTextBox.Text;
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            try
             {
-                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+                string username = UsernameTextBox.Text;
+                string password = PasswordTextBox.Text;
 
-
-                    // Check if username and password match
-            if (Users.ContainsKey(username) && Users[username] == password)
-            {
-                // Check if it's the admin
-                if (username == "admin")
+                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                 {
-                    MessageBox.Show("Welcome, Admin!");
-                    List<Dictionary<string, object>> profiles = LoadProfiles();  // Load profiles for admin
-                    AdminWindow adminWindow = new AdminWindow(profiles);  // Pass profiles to constructor
-                    adminWindow.Show();
+                    MessageBox.Show("Please enter both username and password.");
+                    return;
+                }
+
+                // Load Users dictionary
+                
+
+
+                // Check if username and password match
+                if (Users.ContainsKey(username) && Users[username] == password)
+                {
+                    // Check if it's the admin
+                    if (username == "admin")
+                    {
+                        MessageBox.Show("Welcome, Admin!");
+                        List<Dictionary<string, object>> profiles = LoadProfiles();  // Load profiles for admin
+                        AdminWindow adminWindow = new AdminWindow(profiles);  // Pass profiles to constructor
+                        adminWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Welcome, User!");
+                        UserWindow userWindow = new UserWindow(); // Open User Window
+                        userWindow.Show();
+                    }
+                    this.Hide(); // Hide the login window
                 }
                 else
                 {
-                    MessageBox.Show("Welcome, User!");
-                    UserWindow userWindow = new UserWindow(); // Open User Window
-                    userWindow.Show();
+                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UsernameTextBox.Clear();
+                    PasswordTextBox.Clear();
                 }
-                this.Hide(); // Hide the login window
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                UsernameTextBox.Clear();
-                PasswordTextBox.Clear();
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}");
             }
         }
+
 
 
         private void SignUpButton_Click(Object sender, RoutedEventArgs e)
         {
-            // Open a sign-up window to add new users
             SignUpWindow signUpWindow = new SignUpWindow();
-            signUpWindow.ShowDialog();
+            if (signUpWindow.ShowDialog() == true) // Wait for sign-up window to close
+            {
+                // Update the Users dictionary after a successful sign-up
+                LoadUsers();
+            }
         }
         private List<Dictionary<string, object>> LoadProfiles()
         {
-            return new List<Dictionary<string, object>>()
+            var profiles = new List<Dictionary<string, object>>();
+
+            // Assuming profiles are stored in a text file or other data source
+            const string profilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt";  // Adjust the path accordingly
+
+            if (File.Exists(profilesFilePath))
             {
-                new Dictionary<string, object>
+                var lines = File.ReadAllLines(profilesFilePath);
+                foreach (var line in lines)
                 {
-                    { "UserID", "UID1" },
-                    { "FirstName", "John" },
-                    { "LastName", "Doe" },
-                    { "Age", 30 },
-                    { "Gender", "Male" },
-                    { "Weight", 180 },
-                    { "Goal", "Lose weight" }
-                },
-                // Add more profiles here as necessary
-            };
+                    var parts = line.Split(';');
+                    if (parts.Length == 6) // Assuming there are 6 fields per profile
+                    {
+                        var profile = new Dictionary<string, object>
+                {
+                    { "UserID", parts[0] },
+                    { "FirstName", parts[1] },
+                    { "LastName", parts[2] },
+                    { "Age", int.Parse(parts[3]) },
+                    { "Gender", parts[4] },
+                    { "Weight", int.Parse(parts[5]) },
+                    { "Goal", parts[6] }
+                };
+                        profiles.Add(profile);
+                    }
+                }
+            }
+
+            return profiles;
         }
+
 
     }
 }

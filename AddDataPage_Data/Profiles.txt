@@ -1,0 +1,29 @@
+[
+  {
+    "FirstName": "Phillip",
+    "LastName": "Deleon",
+    "Age": 27,
+    "Gender": "Male",
+    "Weight": 195,
+    "Goal": "get fit",
+    "UserID": "UID1"
+  },
+  {
+    "FirstName": "Jim ",
+    "LastName": "Bob",
+    "Age": 27,
+    "Gender": "male",
+    "Weight": 180,
+    "Goal": "get swole",
+    "UserID": "UID2"
+  },
+  {
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "Age": 25,
+    "Gender": "Female",
+    "Weight": 135,
+    "Goal": "Stay healthy",
+    "UserID": "UID3"
+  }
+]
