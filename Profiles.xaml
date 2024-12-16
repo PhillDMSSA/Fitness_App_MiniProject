@@ -57,7 +57,7 @@
           VerticalAlignment="Center" 
           Width="275" 
           Height="Auto" 
-          CanUserAddRows="False">
+          CanUserAddRows="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
                     <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />

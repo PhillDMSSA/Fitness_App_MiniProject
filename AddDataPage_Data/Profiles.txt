@@ -1,29 +1,3 @@
-[
-  {
-    "FirstName": "Phillip",
-    "LastName": "Deleon",
-    "Age": 27,
-    "Gender": "Male",
-    "Weight": 195,
-    "Goal": "get fit",
-    "UserID": "UID1"
-  },
-  {
-    "FirstName": "Jim ",
-    "LastName": "Bob",
-    "Age": 27,
-    "Gender": "male",
-    "Weight": 180,
-    "Goal": "get swole",
-    "UserID": "UID2"
-  },
-  {
-    "FirstName": "Jane",
-    "LastName": "Doe",
-    "Age": 25,
-    "Gender": "Female",
-    "Weight": 135,
-    "Goal": "Stay healthy",
-    "UserID": "UID3"
-  }
-]
+Phillip|Deleon|27|Male|195|Get in shape|UID1
+Admin|user|100|n/a|1|.|UID2
+Jane|Doe|26|Female|135|Get FIt!!|UID3

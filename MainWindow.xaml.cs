@@ -10,6 +10,8 @@ namespace Fitness_App
     {
         private Dictionary<string, string> Users = new Dictionary<string, string>();
         private const string UserAndPassFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt";
+        private const string ProfilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt"; // Corrected file path for profiles
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,15 +27,12 @@ namespace Fitness_App
         // Load users from the file
         private void LoadUsers()
         {
-            
-
             if (File.Exists(UserAndPassFilePath))
             {
                 var lines = File.ReadAllLines(UserAndPassFilePath);
-                //Users.Clear();
                 foreach (var line in lines)
                 {
-                    var parts = line.Split(';');
+                    var parts = line.Split(',');
                     if (parts.Length == 2)
                     {
                         string username = parts[0];
@@ -47,21 +46,15 @@ namespace Fitness_App
                 // If the file does not exist, create an empty one
                 File.Create(UserAndPassFilePath).Close();
             }
-            // Add hardcoded admin and user if they don't already exist
-            if (!Users.ContainsKey("admin"))
-                Users.Add("admin", "admin123");
-            if (!Users.ContainsKey("user1"))
-                Users.Add("user1", "user123");
-           
         }
-    
+
         // Save users to the file
         private void SaveUsers()
         {
             var lines = new List<string>();
             foreach (var user in Users)
             {
-                lines.Add($"{user.Key};{user.Value}");
+                lines.Add($"{user.Key},{user.Value}");
             }
             File.WriteAllLines(UserAndPassFilePath, lines);
         }
@@ -74,6 +67,41 @@ namespace Fitness_App
         private void ButtonClose_Click(object sender, RoutedEventArgs e) // Close window
         {
             Application.Current.Shutdown();
+        }
+
+        private bool ValidateUserCredentials(string username, string password)
+        {
+            // Check if the file exists
+            if (!File.Exists(UserAndPassFilePath))
+            {
+                MessageBox.Show("Credentials file not found.");
+                return false;
+            }
+
+            // Read all lines from the file
+            string[] lines = File.ReadAllLines(UserAndPassFilePath);
+
+            // Iterate through each line to check for matching credentials
+            foreach (var line in lines)
+            {
+                string[] credentials = line.Split('|');
+                if (credentials.Length == 2)
+                {
+                    string storedUsername = credentials[0].Trim();
+                    string storedPassword = credentials[1].Trim();
+
+                   
+
+                    // Check if the entered username and password match any stored pair
+                    if (storedUsername.Equals(username.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                        storedPassword.Equals(password.Trim()))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false; // If no match is found
         }
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
@@ -89,12 +117,8 @@ namespace Fitness_App
                     return;
                 }
 
-                // Load Users dictionary
-                
-
-
                 // Check if username and password match
-                if (Users.ContainsKey(username) && Users[username] == password)
+                if (ValidateUserCredentials(username, password))
                 {
                     // Check if it's the admin
                     if (username == "admin")
@@ -125,8 +149,6 @@ namespace Fitness_App
             }
         }
 
-
-
         private void SignUpButton_Click(Object sender, RoutedEventArgs e)
         {
             SignUpWindow signUpWindow = new SignUpWindow();
@@ -136,31 +158,30 @@ namespace Fitness_App
                 LoadUsers();
             }
         }
+
+        // Load user profiles from the correct file
         private List<Dictionary<string, object>> LoadProfiles()
         {
             var profiles = new List<Dictionary<string, object>>();
 
-            // Assuming profiles are stored in a text file or other data source
-            const string profilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt";  // Adjust the path accordingly
-
-            if (File.Exists(profilesFilePath))
+            if (File.Exists(ProfilesFilePath))
             {
-                var lines = File.ReadAllLines(profilesFilePath);
+                var lines = File.ReadAllLines(ProfilesFilePath);
                 foreach (var line in lines)
                 {
-                    var parts = line.Split(';');
-                    if (parts.Length == 6) // Assuming there are 6 fields per profile
+                    var parts = line.Split('|');
+                    if (parts.Length == 7) // Assuming there are 7 fields per profile (UserID, FirstName, LastName, Age, Gender, Weight, Goal)
                     {
                         var profile = new Dictionary<string, object>
-                {
-                    { "UserID", parts[0] },
-                    { "FirstName", parts[1] },
-                    { "LastName", parts[2] },
-                    { "Age", int.Parse(parts[3]) },
-                    { "Gender", parts[4] },
-                    { "Weight", int.Parse(parts[5]) },
-                    { "Goal", parts[6] }
-                };
+                        {
+                            { "UserID", parts[0] },
+                            { "FirstName", parts[1] },
+                            { "LastName", parts[2] },
+                            { "Age", int.Parse(parts[3]) },
+                            { "Gender", parts[4] },
+                            { "Weight", int.Parse(parts[5]) },
+                            { "Goal", parts[6] }
+                        };
                         profiles.Add(profile);
                     }
                 }
@@ -168,7 +189,5 @@ namespace Fitness_App
 
             return profiles;
         }
-
-
     }
 }
