@@ -30,7 +30,7 @@ namespace Fitness_App
             addDataPage = new AddDataPage(); // Instantiate the pages
             calculatorPage = new CalculatorPage();
             this.userID = userID; // Initialize the userID
-           
+
         }
         private void ButtonLogOff_Click(object sender, RoutedEventArgs e)
         {
@@ -91,6 +91,11 @@ namespace Fitness_App
             var messagePage = new UserMessagePage();
             this.Content = messagePage; // Assuming you're using a Frame to navigate between pages
 
+        }
+        private void Button_Data_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to DataPage
+            MainFrame.Navigate(new UserDataPage());
         }
 
 

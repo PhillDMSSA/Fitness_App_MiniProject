@@ -13,7 +13,7 @@ namespace Fitness_App
         {
             InitializeComponent();
             Profiles = profiles ?? new List<Dictionary<string, object>>();
-           
+
         }
 
         private void Button_Data_Click(object sender, RoutedEventArgs e)

@@ -91,7 +91,7 @@ namespace Fitness_App
             {
                 MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
     }
 }

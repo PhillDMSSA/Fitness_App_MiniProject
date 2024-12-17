@@ -15,15 +15,15 @@ using System.Windows.Shapes;
 
 namespace Fitness_App
 {
-        public partial class UserMessagePage : Page
-        {
+    public partial class UserMessagePage : Page
+    {
         private string userID = "User";
 
 
         public UserMessagePage()
         {
             InitializeComponent();
-           
+
             LoadMessages();
         }
         private void LoadMessages()

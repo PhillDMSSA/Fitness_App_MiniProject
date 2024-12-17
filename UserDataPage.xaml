@@ -1,4 +1,4 @@
-﻿<Page x:Class="Fitness_App.AdminMessagePage"
+﻿<Page x:Class="Fitness_App.UserDataPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:Fitness_App"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="300"
-      Title="AdminMessagePage"
-      Background="Transparent">
+      Background="Transparent"
+      Title="UserDataPage">
 
     <Page.Resources>
         <!-- Button Style -->
@@ -27,9 +27,17 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
+    <!-- Main Grid -->
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Data Grid Row-->
+            <RowDefinition Height="Auto" />
+            <!-- Button Row-->
+        </Grid.RowDefinitions>
+
         <!-- Background -->
-        <Border Grid.Row="0"  CornerRadius="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Border Grid.Row="0"  CornerRadius="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
 
             <Border.Background>
@@ -43,26 +51,11 @@
 
             <!-- DataGrid -->
             <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="True"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                Margin="10" Background="Transparent" BorderBrush="White"
-                BorderThickness="0" AlternatingRowBackground="LightGray" FontWeight="Bold"/>
+                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  Margin="10" Background="LightGray" BorderBrush="White"
+                  BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold"/>
         </Border>
-        <ListBox x:Name="MessageListBox" 
-                 Margin="10,10,10,95"/>
-
-        <TextBox x:Name="NewMessageTextBox" 
-                 Margin="10,0,100,60" 
-                 Height="30" 
-                 VerticalAlignment="Bottom"/>
-
-        <Button x:Name="SendMessageButton" 
-                Content="Send" 
-                Margin="0,0,10,65" 
-                Width="80" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom"
-                Click="SendMessageButton_Click"/>
-        <Button Content="Back" Width="40" Height="25"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="2,0,0,2"/>
-
+        <!-- Back Button -->
+        <Button Content="Back" Width="40" Height="25" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="10"/>
     </Grid>
 </Page>

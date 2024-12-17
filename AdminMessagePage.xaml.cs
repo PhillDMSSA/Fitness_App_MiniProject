@@ -52,6 +52,26 @@ namespace Fitness_App
             {
                 MessageBox.Show($"Error sending message: {ex.Message}");
             }
+
         }
+        private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack == true)
+            {
+                NavigationService.GoBack();  // Goes back to the previous page in the navigation stack
+            }
+            else
+            {
+                // Navigate to AdminWindow if there's no back page
+                AdminWindow adminWindow = new AdminWindow(new List<Dictionary<string, object>>()); // Pass an empty list for now);
+                adminWindow.Show();
+
+                // Close the parent window of this Page
+                Window parentWindow = Window.GetWindow(this);
+                parentWindow?.Close();
+
+            }
+        }
+
     }
 }
