@@ -82,12 +82,16 @@
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <Button Content="User Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center"/>
                     <Button Content="User Profiles" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Profiles_Click" HorizontalAlignment="Center" Margin="0,5"/>
-                </StackPanel>
+                <Button Content="View Messages" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonMessages_Click" />
+
+            </StackPanel>
 
                 <!-- Panel for Profile Buttons -->
                 <StackPanel x:Name="ButtonPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0"/>
-
-                <!-- Frame to hold dynamic pages -->
+                
+               
+                
+            <!-- Frame to hold dynamic pages -->
                 <Frame Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,120,0,0"/>
             </Grid>
         

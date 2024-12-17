@@ -87,10 +87,15 @@
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="Calculator Page"  FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Calculator Page" Click="Button_Calculator_Click" />
                 <Button Content="Upload Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" ToolTip="Navigate to Data Upload Page" Click="Button_AddData_Click" Margin="0,5,0,0" />
-                </StackPanel>
+                <Button Content="View Messages" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonMessages_Click" Margin="0,5,0,0"/>
+
+
+            </StackPanel>
 
                 <!-- Frame to hold dynamic pages -->
                 <Frame Name="MainFrame" NavigationUIVisibility="Hidden" />
+
+            
             </Grid>
         
     </Border>

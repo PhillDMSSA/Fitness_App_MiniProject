@@ -22,11 +22,15 @@ namespace Fitness_App
         private AddDataPage addDataPage; // Declare the cached AddDataPage instance
         private CalculatorPage calculatorPage; // Example: Another cached page
 
+        private string userID;
+
         public UserWindow()
         {
             InitializeComponent();
             addDataPage = new AddDataPage(); // Instantiate the pages
             calculatorPage = new CalculatorPage();
+            this.userID = userID; // Initialize the userID
+           
         }
         private void ButtonLogOff_Click(object sender, RoutedEventArgs e)
         {
@@ -82,5 +86,13 @@ namespace Fitness_App
             Application.Current.Shutdown();
             MessageBox.Show("Error Occurred: You have been logged off!");
         }
+        private void ButtonMessages_Click(object sender, RoutedEventArgs e)
+        {
+            var messagePage = new UserMessagePage();
+            this.Content = messagePage; // Assuming you're using a Frame to navigate between pages
+
+        }
+
+
     }
 }

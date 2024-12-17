@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Fitness_App
 {
@@ -50,8 +51,14 @@ namespace Fitness_App
             this.Close();
         }
 
-        // RefreshProfileButtons dynamically create buttons for each profile
-        
-        
+        private void ButtonMessages_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMessagePage adminMessagesPage = new AdminMessagePage();
+            MainFrame.Navigate(adminMessagesPage);
+        }
+
+
+
+
     }
 }
