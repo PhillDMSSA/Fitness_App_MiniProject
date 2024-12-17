@@ -5,12 +5,61 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitness_App"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="UserMessagePage">
+      d:DesignHeight="450" d:DesignWidth="300"
+      Title="UserMessagePage"
+      Background="Transparent">
+
+    <Page.Resources>
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="DarkOrange" BorderThickness="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FF00FFFF" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
 
     <Grid>
-        <ListBox x:Name="MessageListBox" Width="400" Height="250" VerticalAlignment="Top" Margin="10"/>
-        <TextBox x:Name="NewMessageTextBox" Width="400" Height="50" VerticalAlignment="Bottom" Margin="10"/>
-        <Button Content="Send Message" Width="100" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Click="SendMessageButton_Click"/>
+        <!-- Background -->
+        <Border Grid.Row="0"  CornerRadius="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <!-- DataGrid -->
+            <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="True"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                Margin="10" Background="Transparent" BorderBrush="White"
+                BorderThickness="0" AlternatingRowBackground="LightGray" FontWeight="Bold"/>
+        </Border>
+        <ListBox x:Name="MessageListBox" 
+                 Margin="10,10,10,95"/>
+
+        <TextBox x:Name="NewMessageTextBox" 
+                 Margin="10,0,100,60" 
+                 Height="30" 
+                 VerticalAlignment="Bottom"/>
+
+        <Button x:Name="SendMessageButton" 
+                Content="Send" 
+                Margin="0,0,10,65" 
+                Width="80" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom"
+                Click="SendMessageButton_Click"/>
+        <Button Content="Back" Width="40" Height="25"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="2,0,0,2"/>
     </Grid>
 </Page>

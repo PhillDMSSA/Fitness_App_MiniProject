@@ -41,7 +41,7 @@ namespace Fitness_App
             var message = new Message
             {
                 Sender = userID,
-                Recipient = "Admin", // Send to the admin
+                Recipient = "Coach", // Send to the admin
                 Content = content,
                 Timestamp = DateTime.Now,
                 UserName = userID
@@ -51,5 +51,17 @@ namespace Fitness_App
             NewMessageTextBox.Clear();
             LoadMessages(); // Refresh the message list
         }
+        private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the current page
+            UserWindow userWindow = new UserWindow();
+            userWindow.Show();
+
+            // Close the current window
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
+        }
+
+
     }
 }

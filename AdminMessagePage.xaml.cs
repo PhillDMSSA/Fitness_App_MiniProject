@@ -7,7 +7,7 @@ namespace Fitness_App
 {
     public partial class AdminMessagePage : Page
     {
-        private string adminID = "Admin"; // Admin's ID
+        private string adminID = "Coach"; // Admin's ID
 
         public AdminMessagePage()
         {
@@ -17,42 +17,29 @@ namespace Fitness_App
 
         private void LoadMessages()
         {
-            try
-            {
-                var messages = MessageManager.GetMessagesForUser(adminID);
-                MessageListBox.ItemsSource = messages.Select(m => $"{m.Timestamp:G} - {m.UserName}: {m.Content}");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading messages: {ex.Message}");
-            }
+            // Get all messages sent to or from the user
+            var messages = MessageManager.GetMessagesForUser(adminID);
+            MessageListBox.ItemsSource = messages.Select(m => $"{m.Timestamp:G} - {m.Sender}: {m.Content}");
         }
 
         private void SendMessageButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            
                 var content = NewMessageTextBox.Text;
                 if (string.IsNullOrWhiteSpace(content)) return;
 
                 var message = new Message
                 {
-                    Sender = "Coach",
+                    Sender = adminID,
                     Recipient = "User",
                     Content = content,
                     Timestamp = DateTime.Now,
-                    UserName = "User1" // Example: This should be dynamically assigned based on the user you're sending to
+                    UserName = adminID // Example: This should be dynamically assigned based on the user you're sending to
                 };
 
                 MessageManager.AddMessage(message);
                 NewMessageTextBox.Clear();
                 LoadMessages();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error sending message: {ex.Message}");
-            }
-
         }
         private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
         {

@@ -61,22 +61,13 @@ namespace Fitness_App
 
         private void BackButtonCal_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                // Goes back to the previous page in the navigation stack
-            }
-            else
-            {
-                if (!(Application.Current.MainWindow is MainWindow mainWindow))
-                {
-                    // Navigate to UserWindow
-                    UserWindow userWindow = new UserWindow();
-                    userWindow.Show();
-                }
-                // Close the current page
-                this.NavigationService.Content = null;  // Optionally clear the current content if necessary
-            }
+            // Close the current page
+            UserWindow userWindow = new UserWindow();
+            userWindow.Show();
+
+            // Close the current window
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
         }
     }
 }

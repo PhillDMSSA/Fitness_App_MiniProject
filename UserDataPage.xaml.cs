@@ -68,22 +68,13 @@ namespace Fitness_App
 
         }
         private void BackButtonDisplayPage_Click(object sender, RoutedEventArgs e)
-        {
-            if (NavigationService.CanGoBack == true)
-            {
-                NavigationService.GoBack();  // Goes back to the previous page in the navigation stack
-            }
-            else
-            {
-                // Navigate to AdminWindow if there's no back page
-                UserWindow userWindow = new UserWindow(); // Pass an empty list for now);
-                userWindow.Show();
+        { // Close the current page
+            UserWindow userWindow = new UserWindow();
+            userWindow.Show();
 
-                // Close the parent window of this Page
-                Window parentWindow = Window.GetWindow(this);
-                parentWindow?.Close();
-
-            }
+            // Close the current window
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
         }
 
 
