@@ -50,10 +50,23 @@
 
 
             <!-- DataGrid -->
-            <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="True"
-                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                      Margin="10" Background="LightGray" BorderBrush="White"
-                      BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="False"
+                      VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Width="275" Height="Auto" Background="LightGray" BorderBrush="White"
+                      BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding FullName}" />
+                        <DataGridTextColumn Header="Workout Date" Binding="{Binding WorkoutDate}" />
+                        <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" />
+                        <DataGridTextColumn Header="Workout" Binding="{Binding Workout}" />
+                        <DataGridTextColumn Header="Sets" Binding="{Binding Sets}" />
+                        <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" />
+                        <DataGridTextColumn Header="Calories Burned" Binding="{Binding BurnedCalories}" />
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </Border>
         <!-- Back Button -->
         <Button Content="Back" Width="40" Height="25" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="10"/>

@@ -1,4 +1,2 @@
-
-Phillip Deleon,456,Chest,12DEC2024,
-Phill Deleon,456,Chest,13Dec2024,fun!!!
-P Deleon,386,Triceps,13DEC2024,hard workout
+John,Doe,Chest,Incline Bench Press,8,4,450,good workout
+Phillip Deleon,17DEC2024,Chest,Bench Press,8,5,156,d

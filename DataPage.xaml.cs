@@ -48,10 +48,13 @@ namespace Fitness_App
                         return new DataEntry
                         {
                             FullName = fields.ElementAtOrDefault(0),
-                            BurnedCalories = fields.ElementAtOrDefault(1),
+                            WorkoutDate = fields.ElementAtOrDefault(1),
                             WorkoutType = fields.ElementAtOrDefault(2),
-                            WorkoutDate = fields.ElementAtOrDefault(3),
-                            Notes = fields.ElementAtOrDefault(4)
+                            Workout = fields.ElementAtOrDefault(3),
+                            Sets = fields.ElementAtOrDefault(4),
+                            Reps = fields.ElementAtOrDefault(5),
+                            BurnedCalories = fields.ElementAtOrDefault(6),
+                            Notes = fields.ElementAtOrDefault(7)
 
                         };
                     })
@@ -86,5 +89,8 @@ namespace Fitness_App
         public string WorkoutType { get; set; }
         public string Notes { get; set; }
         public string WorkoutDate { get; set; }
+        public string Sets { get; set; }
+        public string Reps { get; set; }
+        public string Workout { get; set; }
     }
 }

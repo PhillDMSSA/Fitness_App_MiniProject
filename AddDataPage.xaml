@@ -28,34 +28,44 @@
             <!-- Fixed height for bottom area -->
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Margin=" 0,35,0,0">
 
-            <!-- FirstName Input -->
-            <TextBlock Text="Enter Full Name:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <!-- FullName Input -->
+            <TextBlock Text="Enter Full Name:" FontWeight="Bold" HorizontalAlignment="Center" />
             <TextBox Name="FullNameTextBox" Width="200" Margin="0,5"/>
 
-            <!-- LastName Input -->
+             <!-- Date Of Workout -->
+             <TextBlock Text="Enter Date of Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
+             <TextBlock Text="DDMMMYYYY" FontWeight="Light" FontSize="8" HorizontalAlignment="Center"/>
+             <TextBox Name="DateTextBox" Width="200" Margin="0,5"/>
+
+                <!-- Workout Selection -->
+                <TextBlock Text="Select Workout Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5">
+                    <ComboBoxItem Content="Chest"/>
+                    <ComboBoxItem Content="Back"/>
+                    <ComboBoxItem Content="Triceps"/>
+                    <ComboBoxItem Content="Biceps"/>
+                    <!-- Add more workout options as needed -->
+                </ComboBox>
+
+                <!-- Workout -->
+                <TextBlock Text="Enter Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBox Name="WorkoutTextBox" Width="200" Margin="0,5"/>
+
+                <!-- Sets AND Reps -->
+                <TextBlock Text="Enter Rep #:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,-100,1"/>
+                <TextBox Name="SetTextBox" Width="100" Margin="0,0,-100,0"/>
+                <TextBlock Text="Enter Set #:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-35,100,0"/>
+                <TextBox Name="RepTextBox" Width="100" Margin="0,-18,100,0"/>
+
+                <!-- Calories Burned Input -->
             <TextBlock Text="Enter Calories Burned:" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBox Name="BurnedCaloriesTextBox" Width="200" Margin="0,5"/>
 
-            <!-- Workout Selection -->
-            <TextBlock Text="Select Workout Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5">
-                <ComboBoxItem Content="Chest"/>
-                <ComboBoxItem Content="Back"/>
-                <ComboBoxItem Content="Triceps"/>
-                <ComboBoxItem Content="Biceps"/>
-                <!-- Add more workout options as needed -->
-            </ComboBox>
-            
-            <!-- Date Of Workout -->
-                <TextBlock Text="Enter Date of Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBlock Text="DDMMMYYYY" FontWeight="Light" FontSize="8" HorizontalAlignment="Center"/>
-                <TextBox Name="DateTextBox" Width="200" Margin="0,5"/>
-
                 <!-- User Input Data -->
             <TextBlock Text="Additional Notes:" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBox Name="UserInputTextBox" Width="200" Margin="0,5"/>
+            <TextBox Name="UserInputTextBox" Height ="30" Width="200" Margin="0,5"/>
 
         </StackPanel>
 
