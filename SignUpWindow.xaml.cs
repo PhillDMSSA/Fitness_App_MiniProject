@@ -7,7 +7,8 @@ namespace Fitness_App
 {
     public partial class SignUpWindow : Window
     {
-        private List<UserProfile> Profiles { get; set; } // Profile list created from the properties in UserProfiles window
+       // UserProfiles up = new UserProfiles(); 
+        private List<UserProfiles> Profiles { get; set; } // Profile list created from the properties in UserProfiles window
         private Dictionary<string, string> Users { get; set; } // List for users and their passwords
         private int UserIdCounter;
 
@@ -19,11 +20,11 @@ namespace Fitness_App
             InitializeComponent();
 
             // Initialize or load data
-            Profiles = LoadProfilesFromFile() ?? new List<UserProfile>();
+            Profiles = LoadProfilesFromFile() ?? new List<UserProfiles>(); //??(Null coalescing operator): fallback value when left-hand side it null. (If LoadProfilesFromFile() = null; new List<UserProfiles> is created. 
             Users = LoadUsersFromFile() ?? new Dictionary<string, string>();
 
             // Set UserIdCounter to the next available ID
-            UserIdCounter = Profiles.Count > 0 ? Profiles.Count + 1 : 1;
+            UserIdCounter = Profiles.Count > 0 ? Profiles.Count + 1 : 1; //? (Temaray Operator) = shorthand for if-else statement. If a profile is not created count will start at :1 or Id + 1
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +59,7 @@ namespace Fitness_App
                 string password = GenerateRandomPassword();
 
                 // Create and save profile
-                var profile = new UserProfile
+                var profile = new UserProfiles
                 {
                     FirstName = FirstNameTextBox.Text,
                     LastName = LastNameTextBox.Text,
@@ -97,19 +98,19 @@ namespace Fitness_App
         }
 
         // Load profiles from a plain text file
-        private List<UserProfile> LoadProfilesFromFile()
+        private List<UserProfiles> LoadProfilesFromFile()
         {
             if (!File.Exists(ProfilesFilePath)) return null;
             try
             {
-                var profiles = new List<UserProfile>();
+                var profiles = new List<UserProfiles>();
                 var lines = File.ReadAllLines(ProfilesFilePath);
                 foreach (var line in lines)
                 {
                     var parts = line.Split('|'); // Assuming data is stored like: FirstName|LastName|Age|Gender|Weight|Goal|UserID
                     if (parts.Length == 7)
                     {
-                        var profile = new UserProfile
+                        var profile = new UserProfiles
                         {
                             FirstName = parts[0],
                             LastName = parts[1],
@@ -194,7 +195,7 @@ namespace Fitness_App
             }
         }
 
-        private static string GenerateRandomPassword(int length = 8)
+        private static string GenerateRandomPassword(int length = 8) //sets default value to 8 length password
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
@@ -207,14 +208,5 @@ namespace Fitness_App
         }
     }
 
-    public class UserProfile
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Age { get; set; }
-        public string Gender { get; set; }
-        public string Weight { get; set; }
-        public string Goal { get; set; }
-        public string UserID { get; set; }
-    }
+   
 }

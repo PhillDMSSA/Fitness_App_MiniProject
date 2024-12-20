@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fitness_App"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="300"
+      d:DesignHeight="450" d:DesignWidth="800"
       Background="Transparent"
       Title="UserDataPage">
 
@@ -30,16 +30,18 @@
     <!-- Main Grid -->
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <!-- Data Grid Row-->
             <RowDefinition Height="Auto" />
-            <!-- Button Row-->
+            <!-- For Add Button -->
+            <RowDefinition Height="*" />
+            <!-- For DataGrid -->
+            <RowDefinition Height="Auto" />
+            <!-- For Back Button -->
         </Grid.RowDefinitions>
 
-        <!-- Background -->
-        <Border Grid.Row="0"  CornerRadius="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+       
 
-
+        <!-- Background and DataGrid -->
+        <Border Grid.Row="1" CornerRadius="10" Margin="5,0,5,0">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FF00FFFF" Offset="0.0"/>
@@ -47,28 +49,51 @@
                 </LinearGradientBrush>
             </Border.Background>
 
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                         VerticalScrollBarVisibility="Auto" 
+                         Margin="10">
+                <DataGrid x:Name="DataGridDisplay" 
+                         AutoGenerateColumns="False"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         MinWidth="700"
+                         Background="LightGray" 
+                         BorderBrush="White"
+                         BorderThickness="1" 
+                         AlternatingRowBackground="LightGray" 
+                         FontWeight="Bold"
+                         IsReadOnly="True"
+                         GridLinesVisibility="All"
+                         ColumnWidth="*">
 
-
-            <!-- DataGrid -->
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="False"
-              VerticalAlignment="Center" HorizontalAlignment="Center"
-                  Width="275" Height="Auto" Background="LightGray" BorderBrush="White"
-              BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding FullName}" />
-                        <DataGridTextColumn Header="Workout Date" Binding="{Binding WorkoutDate}" />
-                        <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" />
-                        <DataGridTextColumn Header="Workout" Binding="{Binding Workout}" />
-                        <DataGridTextColumn Header="Sets" Binding="{Binding Sets}" />
-                        <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" />
-                        <DataGridTextColumn Header="Calories Burned" Binding="{Binding BurnedCalories}" />
-                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding FullName}" Width="100"/>
+                        <DataGridTextColumn Header="Workout Date" Binding="{Binding WorkoutDate}" Width="100"/>
+                        <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" Width="100"/>
+                        <DataGridTextColumn Header="Workout" Binding="{Binding Workout}" Width="100"/>
+                        <DataGridTextColumn Header="Sets" Binding="{Binding Sets}" Width="50"/>
+                        <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" Width="50"/>
+                        <DataGridTextColumn Header="Calories Burned" Binding="{Binding BurnedCalories}" Width="100"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="150"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
         </Border>
+
         <!-- Back Button -->
-        <Button Content="Back" Width="40" Height="25" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="10"/>
+        <Button Content="Back" 
+                Width="40" Height="25" 
+                Style="{StaticResource RoundedButtonStyle}" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" 
+                Grid.Row="2" 
+                Click="BackButtonDisplayPage_Click" 
+                Margin="10"/>
+        <!-- Add Button -->
+        <Button Content="Add Workout" 
+         Width="100" Height="25" 
+         Style="{StaticResource RoundedButtonStyle}" 
+         HorizontalAlignment="Center"
+         Click="AddWorkout_Click" Margin="0,20"/>
     </Grid>
 </Page>

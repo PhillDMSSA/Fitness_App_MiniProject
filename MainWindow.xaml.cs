@@ -91,13 +91,14 @@ namespace Fitness_App
                     string storedPassword = credentials[1].Trim();
 
                    
-
-                    // Check if the entered username and password match any stored pair
+                    
+                    // Check if the entered username and password match any stored pair | unable to just enter and random strings | ***could login with somehting random without this statement******
                     if (storedUsername.Equals(username.Trim(), StringComparison.OrdinalIgnoreCase) &&
                         storedPassword.Equals(password.Trim()))
                     {
                         return true;
                     }
+                    
                 }
             }
 

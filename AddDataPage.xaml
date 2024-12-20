@@ -7,7 +7,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="300"
       Title="AddDataPage">
-    
+
+    <Page.Resources>
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FF00FFFF" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
+
     <Border CornerRadius="10">
 
        
@@ -36,16 +54,20 @@
 
              <!-- Date Of Workout -->
              <TextBlock Text="Enter Date of Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
-             <TextBlock Text="DDMMMYYYY" FontWeight="Light" FontSize="8" HorizontalAlignment="Center"/>
+             <TextBlock Text="DDMMMYYYY" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" />
              <TextBox Name="DateTextBox" Width="200" Margin="0,5"/>
 
                 <!-- Workout Selection -->
-                <TextBlock Text="Select Workout Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Select Muscle Group:" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5">
-                    <ComboBoxItem Content="Chest"/>
+                    <ComboBoxItem Content="Abs"/>
                     <ComboBoxItem Content="Back"/>
-                    <ComboBoxItem Content="Triceps"/>
                     <ComboBoxItem Content="Biceps"/>
+                    <ComboBoxItem Content="Cardio"/>
+                    <ComboBoxItem Content="Chest"/>
+                    <ComboBoxItem Content="Legs"/>
+                    <ComboBoxItem Content="Shoulders"/>
+                    <ComboBoxItem Content="Triceps"/>
                     <!-- Add more workout options as needed -->
                 </ComboBox>
 
@@ -71,13 +93,13 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
                 <!-- Back Button -->
-                <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Margin="2.5"/>
 
                 <!-- Save Button -->
-            <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" />
+                <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
 
             <!-- Clear Button -->
-            <Button Content="Clear" Width="65" Height="25"  Click="ClearButton_Click"/>
+                <Button Content="Clear" Width="65" Height="25"  Click="ClearButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
         </StackPanel>
 
             <!-- Background for the banner-->

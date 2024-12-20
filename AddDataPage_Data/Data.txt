@@ -1,2 +1,1 @@
-John,Doe,Chest,Incline Bench Press,8,4,450,good workout
-Phillip Deleon,17DEC2024,Chest,Bench Press,8,5,156,d
+Phillip Deleon,19DEC2024,Chest,Bench Press,8,5,156,

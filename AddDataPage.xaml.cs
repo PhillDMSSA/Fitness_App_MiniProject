@@ -51,12 +51,7 @@ namespace Fitness_App
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //FirstNameTextBox.Text = string.Empty;
-            // LastNameTextBox.Text = string.Empty;
-            //UserInputTextBox.Text = string.Empty;
-
-            // Reset the ComboBox
-            // WorkoutComboBox.SelectedIndex = -1; // Deselect any selected item
+           
             ClearFormFields();
 
         }

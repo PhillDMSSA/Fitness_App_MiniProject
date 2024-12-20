@@ -14,6 +14,24 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
 
+    <Window.Resources>
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="Orange" BorderThickness="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+
 
     <Border CornerRadius="10">
         
@@ -109,22 +127,24 @@
                             Content="Sign In"
                             Foreground="Black"
                             FontSize="12"
-                            Width="50"
+                            Width="60"
                             FontFamily="Montserrat" 
                             Cursor="Hand"
                             Grid.Column="1"
-                            Click="LogInButton_Click"/>
+                            Click="LogInButton_Click"
+                            Style="{StaticResource RoundedButtonStyle}"/>
                     <Button x:Name="SignUpButton"
                             BorderThickness="0"
                             Content="Sign Up"
                             Foreground="Black"
                             FontSize="12"
-                            Width="50"
+                            Width="60"
                             FontFamily="Montserrat" 
                             Cursor="Hand"
                             Grid.Column="1"
                             Click="SignUpButton_Click"
-                            Margin="10,0,0,0"/>
+                            Margin="10,0,0,0"
+                            Style="{StaticResource RoundedButtonStyle}"/>
                 </StackPanel>
                 
 
