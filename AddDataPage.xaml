@@ -59,7 +59,7 @@
 
                 <!-- Workout Selection -->
                 <TextBlock Text="Select Muscle Group:" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5">
+                <ComboBox Name="WorkoutComboBox" Width="200" Margin="0,5" SelectionChanged="WorkoutComboBox_Workout">
                     <ComboBoxItem Content="Abs"/>
                     <ComboBoxItem Content="Back"/>
                     <ComboBoxItem Content="Biceps"/>
@@ -72,8 +72,8 @@
                 </ComboBox>
 
                 <!-- Workout -->
-                <TextBlock Text="Enter Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <TextBox Name="WorkoutTextBox" Width="200" Margin="0,5"/>
+                <TextBlock Text="Select Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <ComboBox Name="WorkoutsComboBox" Width="200" Margin="0,5"/>
 
                 <!-- Sets AND Reps -->
                 <TextBlock Text="Enter Rep #:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,-100,1"/>

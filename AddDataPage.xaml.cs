@@ -63,7 +63,7 @@ namespace Fitness_App
             UserInputTextBox.Clear();
             DateTextBox.Clear();
             WorkoutComboBox.SelectedIndex = -1; // Deselect any selected item
-            WorkoutTextBox.Clear();
+            WorkoutsComboBox.SelectedIndex = -1;
             SetTextBox.Clear();
             RepTextBox.Clear();
         }
@@ -74,10 +74,11 @@ namespace Fitness_App
 
                 // Get the workout type as a string (the content of the selected ComboBoxItem)
                 string workoutType = (WorkoutComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+                string workout = WorkoutsComboBox.SelectedItem?.ToString() ?? string.Empty;
                 
 
 
-                string dataToSave = $"{FullNameTextBox.Text},{DateTextBox.Text},{workoutType},{WorkoutTextBox.Text},{SetTextBox.Text},{RepTextBox.Text},{BurnedCaloriesTextBox.Text},{UserInputTextBox.Text}";
+                string dataToSave = $"{FullNameTextBox.Text},{DateTextBox.Text},{workoutType},{workout},{SetTextBox.Text},{RepTextBox.Text},{BurnedCaloriesTextBox.Text},{UserInputTextBox.Text}";
 
                 // Save the content of the TextBox to the file
                 File.AppendAllText(FilePath, dataToSave + Environment.NewLine); //isstead of writing over data its creates a new line 
@@ -91,6 +92,62 @@ namespace Fitness_App
                 MessageBox.Show($"Error saving data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void WorkoutComboBox_Workout(object sender, SelectionChangedEventArgs e)
+        {
+            if(WorkoutComboBox.SelectedItem is ComboBoxItem selectedItem )
+            {
+                string muscleGroup = selectedItem.Content.ToString();
+
+                //clears previous item
+                WorkoutsComboBox.Items.Clear();
+
+                switch(muscleGroup)
+                {
+                    case "Abs":
+                        WorkoutsComboBox.Items.Add("Crunches");
+                        WorkoutsComboBox.Items.Add("Plank");
+                        WorkoutsComboBox.Items.Add("Leg Raises");
+                        break;
+                    case "Back":
+                        WorkoutsComboBox.Items.Add("Pull-ups");
+                        WorkoutsComboBox.Items.Add("Deadlifts");
+                        WorkoutsComboBox.Items.Add("Barbell Rows");
+                        break;
+                    case "Biceps":
+                        WorkoutsComboBox.Items.Add("Bicep Curls");
+                        WorkoutsComboBox.Items.Add("Hammer Curls");
+                        WorkoutsComboBox.Items.Add("Concentration Curls");
+                        break;
+                    case "Cardio":
+                        WorkoutsComboBox.Items.Add("Running");
+                        WorkoutsComboBox.Items.Add("Cycling");
+                        WorkoutsComboBox.Items.Add("Jump Rope");
+                        break;
+                    case "Chest":
+                        WorkoutsComboBox.Items.Add("Bench Press");
+                        WorkoutsComboBox.Items.Add("Incline Dumbbell Press");
+                        WorkoutsComboBox.Items.Add("Chest Flys");
+                        break;
+                    case "Legs":
+                        WorkoutsComboBox.Items.Add("Squats");
+                        WorkoutsComboBox.Items.Add("Lunges");
+                        WorkoutsComboBox.Items.Add("Leg Press");
+                        break;
+                    case "Shoulders":
+                        WorkoutsComboBox.Items.Add("Overhead Press");
+                        WorkoutsComboBox.Items.Add("Lateral Raises");
+                        WorkoutsComboBox.Items.Add("Front Raises");
+                        break;
+                    case "Triceps":
+                        WorkoutsComboBox.Items.Add("Tricep Dips");
+                        WorkoutsComboBox.Items.Add("Skull Crushers");
+                        WorkoutsComboBox.Items.Add("Overhead Tricep Extensions");
+                        break;
+
+                }
+            }
         }
     }
 }

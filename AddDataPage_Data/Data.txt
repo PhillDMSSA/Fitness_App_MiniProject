@@ -1,1 +1,2 @@
 Phillip Deleon,19DEC2024,Chest,Bench Press,8,5,156,
+test,21DEC2024,Legs,Lunges,12,2,256,Good
