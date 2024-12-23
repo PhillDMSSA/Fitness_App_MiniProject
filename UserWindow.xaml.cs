@@ -73,6 +73,14 @@ namespace Fitness_App
                 MainFrame.Navigate(addDataPage);
             }
         }
+        private void Button_Workouts_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content != addDataPage)
+            {
+                MainFrame.Navigate(new WorkOutPost());
+            }
+
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
         {

@@ -1,0 +1,73 @@
+﻿<Page x:Class="Fitness_App.WorkOutPost"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Fitness_App"
+      mc:Ignorable="d" 
+            d:DesignHeight="450" d:DesignWidth="300"
+      Title="DataPage" 
+      Background="Transparent" >
+
+    <Page.Resources>
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="DarkOrange" BorderThickness="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FF00FFFF" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
+
+    <!-- Main Grid -->
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Data Grid Row-->
+            <RowDefinition Height="Auto" />
+            <!-- Button Row-->
+        </Grid.RowDefinitions>
+
+        <!-- Background -->
+        <Border Grid.Row="0"  CornerRadius="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                    <GradientStop Color="DarkOrange" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+
+            <!-- DataGrid -->
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="DataGridDisplay" AutoGenerateColumns="False"
+                      VerticalAlignment="Center" HorizontalAlignment="Center"
+                          Width="275" Height="Auto" Background="LightGray" BorderBrush="White"
+                      BorderThickness="1" AlternatingRowBackground="LightGray" FontWeight="Bold">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                        <DataGridTextColumn Header="Muscle Group" Binding="{Binding MuscleGroup}" />
+                        <DataGridTextColumn Header="Workout" Binding="{Binding Workout}" />
+                        <DataGridTextColumn Header="Sets" Binding="{Binding Sets}" />
+                        <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" />
+                        <DataGridTextColumn Header="Rest Time" Binding="{Binding Rest_Time}" />
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Border>
+        <!-- Back Button -->
+        <Button Content="Back" Width="40" Height="25" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Click="BackButtonDisplayPage_Click" Margin="10"/>
+    </Grid>
+</Page>

@@ -6,3 +6,4 @@ John Doe,23DEC2024,Cardio,Cycling,1,1,156,test
 Phillip Deleon,23DEC2024,Back,Deadlifts,10,3,156,test
 phillip.deleon,23DEC2024,Back,Deadlifts,4,4,14545,trdt
 John.Doe,23DEC2024,Biceps,Hammer Curls,12,3,156,test
+phillip.deleon,23DEC2024,Biceps,Hammer Curls,8-12,5,186,great workout!!

@@ -1,0 +1,108 @@
+﻿<Page x:Class="Fitness_App.AdminPostWorkoutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Fitness_App"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="300"
+      Title="AddDataPage">
+
+    <Page.Resources>
+        <!-- Button Style -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FF00FFFF" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
+
+    <Border CornerRadius="10">
+
+
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#FF00FFFF" Offset="0.0"/>
+                <GradientStop Color="DarkOrange" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+
+        <Grid >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <!-- Fill the available space -->
+                <RowDefinition Height="Auto" />
+                <!-- Fixed height for bottom area -->
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" Margin="0,-75,0,0">
+
+                <!-- WorkOut Date -->
+                <TextBlock Text="Workout Date:" FontWeight="Bold" HorizontalAlignment="Center" />
+                <TextBox Name="WorkoutDateTextBox" Width="200" Margin="0,5"/>
+                
+                <!-- Workout Selection -->
+                <TextBlock Text="Select Muscle Group:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <ComboBox Name="MuscleGroupComboBox" Width="200" Margin="0,5" SelectionChanged="WorkoutComboBox_Workout">
+                    <ComboBoxItem Content="Abs"/>
+                    <ComboBoxItem Content="Back"/>
+                    <ComboBoxItem Content="Biceps"/>
+                    <ComboBoxItem Content="Cardio"/>
+                    <ComboBoxItem Content="Chest"/>
+                    <ComboBoxItem Content="Legs"/>
+                    <ComboBoxItem Content="Shoulders"/>
+                    <ComboBoxItem Content="Triceps"/>
+                    <!-- Add more workout options as needed -->
+                </ComboBox>
+
+                <!-- Workout -->
+                <TextBlock Text="Select Workout:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <ComboBox Name="WorkoutsComboBox" Width="200" Margin="0,5"/>
+
+                <!-- Sets AND Reps -->
+                <TextBlock Text="Enter Rep #:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,-100,1"/>
+                <TextBox Name="SetTextBox" Width="100" Margin="0,0,-100,0"/>
+                <TextBlock Text="Enter Set #:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,-35,100,0"/>
+                <TextBox Name="RepTextBox" Width="100" Margin="0,-18,100,0"/>
+
+                <!-- Calories Burned Input -->
+                <TextBlock Text="Rest Between Workouts:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBox Name="RestTimeTextBox" Width="200" Margin="0,5"/>
+
+                <!-- User Input Data -->
+                <TextBlock Text="Additional Notes:" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBox Name="UserInputTextBox" Height ="30" Width="200" Margin="0,5"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,45">
+                <!-- Back Button -->
+                <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Margin="2.5"/>
+
+                <!-- Save Button -->
+                <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
+
+                <!-- Clear Button -->
+                <Button Content="Clear" Width="65" Height="25"  Click="ClearButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
+            </StackPanel>
+
+            
+
+
+
+
+        </Grid>
+    </Border>
+</Page>
+           

@@ -56,6 +56,11 @@ namespace Fitness_App
             AdminMessagePage adminMessagesPage = new AdminMessagePage();
             MainFrame.Navigate(adminMessagesPage);
         }
+        private void ButtonWorkoutOfheDay_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MainFrame.Navigate(new AdminPostWorkoutPage());
+        }
 
 
 

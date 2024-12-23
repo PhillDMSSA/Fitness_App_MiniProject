@@ -80,10 +80,10 @@
 
                 <!-- Buttons -->
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Button Content="User Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center"/>
+                    <Button Content="User Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center" Margin="0,5"/>
                     <Button Content="User Profiles" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Profiles_Click" HorizontalAlignment="Center" Margin="0,5"/>
-                <Button Content="View Messages" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonMessages_Click" />
-
+                    <Button Content="View Messages" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonMessages_Click" Margin="0,5" />
+                    <Button Content="W.O.T.D" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonWorkoutOfheDay_Click" Margin="0,5"/>
             </StackPanel>
 
                 <!-- Panel for Profile Buttons -->
