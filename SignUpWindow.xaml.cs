@@ -7,7 +7,7 @@ namespace Fitness_App
 {
     public partial class SignUpWindow : Window
     {
-       // UserProfiles up = new UserProfiles(); 
+        
         private List<UserProfiles> Profiles { get; set; } // Profile list created from the properties in UserProfiles window
         private Dictionary<string, string> Users { get; set; } // List for users and their passwords
         private int UserIdCounter;
@@ -208,5 +208,5 @@ namespace Fitness_App
         }
     }
 
-   
+
 }

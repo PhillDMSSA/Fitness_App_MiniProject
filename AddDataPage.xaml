@@ -49,7 +49,7 @@
         <StackPanel x:Name="CalInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Margin=" 0,35,0,0">
 
             <!-- FullName Input -->
-            <TextBlock Text="Enter Full Name:" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Enter User Name:" FontWeight="Bold" HorizontalAlignment="Center" />
             <TextBox Name="FullNameTextBox" Width="200" Margin="0,5"/>
 
              <!-- Date Of Workout -->

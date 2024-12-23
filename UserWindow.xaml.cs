@@ -34,6 +34,8 @@ namespace Fitness_App
         }
         private void ButtonLogOff_Click(object sender, RoutedEventArgs e)
         {
+            LoggedInUser.Username = null; // Clear the logged-in user session
+
             MainWindow main = new MainWindow();
             main.Show();
             MessageBox.Show("Logged off successful!");

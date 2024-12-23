@@ -6,6 +6,10 @@ using System.Windows.Input;
 
 namespace Fitness_App
 {
+    public static class LoggedInUser
+    {
+        public static string Username { get; set; }
+    }
     public partial class MainWindow : Window
     {
         private Dictionary<string, string> Users = new Dictionary<string, string>();
@@ -121,6 +125,10 @@ namespace Fitness_App
                 // Check if username and password match
                 if (ValidateUserCredentials(username, password))
                 {
+
+                    //Set the currenlty logged in user
+                    LoggedInUser.Username = username;
+
                     // Check if it's the admin
                     if (username == "admin")
                     {

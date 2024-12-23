@@ -4,22 +4,27 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace Fitness_App
 {
     public partial class UserDataPage : Page
     {
         private const string filePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Data.txt";
+        private const string UserDataFolder = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\UserDataFolder\";
         private List<DataEntry1> currentData;
+        private string fullName;
 
         public UserDataPage()
         {
             InitializeComponent();
-            LoadDataIntoDataGrid();
+            fullName = LoggedInUser.Username; //Set the Logged-In user
+            LoadDataIntoDataGrid(); //load userss data using their username
         }
 
         private void LoadDataIntoDataGrid()
         {
+            string userFilePath = GetUserFilePath(fullName);
             if (!File.Exists(filePath))
             {
                 MessageBox.Show("No data file found. Please save some data first.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -28,7 +33,7 @@ namespace Fitness_App
 
             try
             {
-                var lines = File.ReadAllLines(filePath);
+                var lines = File.ReadAllLines(userFilePath);
                 currentData = lines
                     .Where(line => !string.IsNullOrWhiteSpace(line))
                     .Select(line =>
@@ -72,6 +77,16 @@ namespace Fitness_App
             Window currentWindow = Window.GetWindow(this);
             currentWindow?.Close();
         }
+
+        private string GetUserFilePath(string username)
+        {
+            // Use the username directly as it is in "first.last" format
+            string sanitizedFileName = username.Trim();
+
+            // Return the file path using the sanitized name
+            return System.IO.Path.Combine(UserDataFolder, $"{sanitizedFileName}_data.txt");
+        }
+
     }
 
     public class DataEntry1

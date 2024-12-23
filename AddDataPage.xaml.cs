@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 
+
 namespace Fitness_App
 {
     /// <summary>
@@ -22,7 +23,7 @@ namespace Fitness_App
     public partial class AddDataPage : Page
     {
         private const string FilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Data.txt";
-
+        private const string UserDataFolder = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\UserDataFolder\";
         public AddDataPage()
         {
             InitializeComponent();
@@ -75,13 +76,18 @@ namespace Fitness_App
                 // Get the workout type as a string (the content of the selected ComboBoxItem)
                 string workoutType = (WorkoutComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
                 string workout = WorkoutsComboBox.SelectedItem?.ToString() ?? string.Empty;
-                
-
-
                 string dataToSave = $"{FullNameTextBox.Text},{DateTextBox.Text},{workoutType},{workout},{SetTextBox.Text},{RepTextBox.Text},{BurnedCaloriesTextBox.Text},{UserInputTextBox.Text}";
+
+                Directory.CreateDirectory(System.IO.Path.GetDirectoryName(FilePath));
+                Directory.CreateDirectory(UserDataFolder);
 
                 // Save the content of the TextBox to the file
                 File.AppendAllText(FilePath, dataToSave + Environment.NewLine); //isstead of writing over data its creates a new line 
+
+                //Save user-files
+                string userFilePath = GetUserFilePath(FullNameTextBox.Text);
+                File.AppendAllText(userFilePath, dataToSave + Environment.NewLine);
+
 
                 ClearFormFields(); //clears fields after data is saved
 
@@ -148,6 +154,15 @@ namespace Fitness_App
 
                 }
             }
+        }
+
+        private string GetUserFilePath(string fullname)
+        {
+            string formattedName = fullname.ToLower().Replace(" ", ".");
+
+            string sanitizedName = string.Join("_", fullname.Split(System.IO.Path.GetInvalidFileNameChars()));
+
+            return System.IO.Path.Combine(UserDataFolder, $"{sanitizedName}_Data.txt");
         }
     }
 }
