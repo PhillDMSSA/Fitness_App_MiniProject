@@ -1,97 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Fitness_App
 {
-    
     public partial class UserWorkoutPage : Page
     {
         public ObservableCollection<Workouts> Workouts { get; set; }
+        private readonly string[] muscleGroups = { "Abs", "Back", "Biceps", "Chest", "Cardio", "Glutes", "Hamstrings", "Quads", "Legs", "Shoulder" };
+        private readonly string[] difficulties = { "Easy", "Moderate", "Extensive" };
+
         public UserWorkoutPage()
         {
             InitializeComponent();
-            Workouts = new ObservableCollection<Workouts>();
-            WorkoutGrid.ItemsSource = Workouts;
+            Workouts = new ObservableCollection<Workouts>(); 
+            WorkoutGrid.ItemsSource = Workouts; //assigned to datagrid
+
+            // Initialize ComboBoxes
+            MuscleGroupComboBox.ItemsSource = muscleGroups;
+            DifficultyComboBox.ItemsSource = difficulties;
         }
 
         private void BackButtonCal_Click(object sender, RoutedEventArgs e)
         {
-            // Close the current page
             UserWindow userWindow = new UserWindow();
             userWindow.Show();
+            Window.GetWindow(this)?.Close();
+        }
 
-            // Close the current window
-            Window currentWindow = Window.GetWindow(this);
-            currentWindow?.Close();
+       
+           private void AddWorkout_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedMuscleGroup = MuscleGroupComboBox.SelectedItem?.ToString();
+            string selectedDifficulty = DifficultyComboBox.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedMuscleGroup) || string.IsNullOrEmpty(selectedDifficulty))
+            {
+                MessageBox.Show("Please select both a muscle group and difficulty level");
+                return;
+            }
+
+            Workouts.Add(new Workouts
+            {
+                MuscleGroup = selectedMuscleGroup,
+                Difficulty = selectedDifficulty,
+                Workout = "Pending",
+                Sets = "Pending",
+                Reps = "Pending",
+                Rest_Time = "Pending"
+            });
+
+            MuscleGroupComboBox.SelectedIndex = -1; //clears box for another workout input
+            DifficultyComboBox.SelectedIndex = -1; //clears box for another workout input
         }
 
         private void GenerateWorkout_Click(object sender, RoutedEventArgs e)
         {
-            bool addMoreWorkouts;
-
-            do
+            if (Workouts.Count == 0)
             {
-                //Prompt the user to select a muscle group and difficulty
-                string selectedMuscleGroup = PromptForMuscleGroup();
-                string selectedDifficulty = PromptForDifficulty();
+                MessageBox.Show("Please add at least one workout before generating");
+                return;
+            }
 
-                if (string.IsNullOrEmpty(selectedMuscleGroup) || string.IsNullOrEmpty(selectedDifficulty))
+            // Create a snapshot of the Workouts collection to avoid modifying it during iteration
+            var workoutsList = Workouts.ToList();
+
+            foreach (var workout in workoutsList)
+            {
+                string[] workoutDetails = GenerateWorkout(workout.MuscleGroup, workout.Difficulty);
+
+
+                // Debugging: Log the workout index to confirm it's valid
+                int index = Workouts.IndexOf(workout);
+                if (index >= 0)  // Ensure the index is valid
                 {
-                    MessageBox.Show("Please enter a valid muscle group and workout difficulty");
+                    // Replace the current workout with the generated details
+                    Workouts[index] = new Workouts
+                    {
+                        MuscleGroup = workout.MuscleGroup,
+                        Difficulty = workout.Difficulty,
+                        Workout = workoutDetails[0],  // First workout
+                        Sets = workoutDetails[1],     // Sets
+                        Reps = workoutDetails[2],     // Reps
+                        Rest_Time = workoutDetails[3],  // Rest time
+                        Notes = workoutDetails[4]  // Optional: Add notes if needed
+                    };
+                }
+                else
+                {
+                    MessageBox.Show("Error: Workout not found in the collection.");
                     return;
                 }
-
-                string[] workoutDetails = GenerateWorkout(selectedMuscleGroup, selectedDifficulty);
-                Workouts.Add(new Workouts
-                {
-                    MuscleGroup = selectedMuscleGroup,
-                    Workout = workoutDetails[0],
-                    SetsReps = workoutDetails[1]
-                });
-
-                //Ask user to add another workout
-                MessageBoxResult result = MessageBox.Show("Would you like to add another workout?", "Add More", MessageBoxButton.YesNo);
-                addMoreWorkouts = result == MessageBoxResult.Yes;
             }
-            while (addMoreWorkouts);
-            
-        }
 
-        private string PromptForMuscleGroup()
-        {
-            string[] muscleGroups = { "Abs", "Back", "Biceps", "Chest","Cardio","Glutes","Hamstrings","Quads","Legs", "Shoulder",};
-            return PromptForSelection("Select Muscle Group", muscleGroups);
-        }
-        private string PromptForDifficulty()
-        {
-            string[] difficulties = { "Easy", "Moderate", "Extensive" };
-            return PromptForSelection("Select Difficulty Level", difficulties);
-        }
-
-        private string PromptForSelection(string title, string[] options)
-        {
-            foreach (string option in options)
-            {
-                MessageBoxResult result = MessageBox.Show($"Do you want to select {option}?", title, MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    return option;
-                }
-            }
-            return null;
+            MessageBox.Show("Workout generation complete!");
         }
 
         private string[] GenerateWorkout(string muscleGroup, string difficulty)
@@ -99,28 +103,43 @@ namespace Fitness_App
             Random random = new Random();
             string[] workouts;
 
+            // Select workouts based on muscle group
             switch (muscleGroup)
             {
-                case "Chest":
-                    workouts = new[] { "Bench Press", "Incline Dumbbell Press", "Push-ups", "Cable Crossovers" };
+                case "Abs":
+                    workouts = new[] { "Crunches", "Planks", "Russian Twists", "Leg Raises" };
                     break;
                 case "Back":
                     workouts = new[] { "Pull-ups", "Deadlifts", "Barbell Rows", "Lat Pulldowns" };
                     break;
+                case "Biceps":
+                    workouts = new[] { "Barbell Curls", "Hammer Curls", "Preacher Curls", "Concentration Curls" };
+                    break;
+                case "Chest":
+                    workouts = new[] { "Bench Press", "Incline Dumbbell Press", "Push-ups", "Cable Crossovers" };
+                    break;
+                case "Cardio":
+                    workouts = new[] { "Running", "Jump Rope", "Burpees", "Mountain Climbers" };
+                    break;
+                case "Glutes":
+                    workouts = new[] { "Hip Thrusts", "Glute Bridges", "Bulgarian Split Squats", "Step-ups" };
+                    break;
+                case "Hamstrings":
+                    workouts = new[] { "Romanian Deadlifts", "Leg Curls", "Good Mornings", "Nordic Curls" };
+                    break;
+                case "Quads":
+                    workouts = new[] { "Front Squats", "Leg Extensions", "Walking Lunges", "Box Jumps" };
+                    break;
                 case "Legs":
                     workouts = new[] { "Squats", "Lunges", "Leg Press", "Hamstring Curls" };
                     break;
-                case "Shoulders":
+                case "Shoulder":
                     workouts = new[] { "Overhead Press", "Lateral Raises", "Front Raises", "Arnold Press" };
                     break;
-                case "Arms":
-                    workouts = new[] { "Bicep Curls", "Tricep Dips", "Hammer Curls", "Tricep Pushdowns" };
-                    break;
                 default:
-                    return new[] { "Unknown workout", "Unknown sets and reps" };
+                    return new[] { "Unknown workout", "Unknown sets and reps", "Unknown sets", "Unknown rest time" };
             }
 
-            // Generate at least two workouts
             int firstIndex = random.Next(workouts.Length);
             int secondIndex;
             do
@@ -131,31 +150,41 @@ namespace Fitness_App
             string firstWorkout = workouts[firstIndex];
             string secondWorkout = workouts[secondIndex];
 
-            // Determine sets and reps based on difficulty
-            string setsReps;
-            switch (difficulty)
+            string sets = difficulty switch
             {
-                case "Easy":
-                    setsReps = "3 sets of 10 reps";
-                    break;
-                case "Moderate":
-                    setsReps = "4 sets of 12 reps";
-                    break;
-                case "Extensive":
-                    setsReps = "5 sets of 15 reps";
-                    break;
-                default:
-                    setsReps = "Unknown difficulty level.";
-                    break;
-            }
+                "Easy" => "3",
+                "Moderate" => "5",
+                "Extensive" => "7",
+                _ => "0"
+            };
 
-            return new[] { $"{firstWorkout} and {secondWorkout}", setsReps };
+            string reps = difficulty switch
+            {
+                "Easy" => "5-7",
+                "Moderate" => "8-11",
+                "Extensive" => "12-15",
+                _ => "0"
+            };
+
+            string restTime = difficulty switch
+            {
+                "Easy" => "1 min",
+                "Moderate" => "45 secs",
+                "Extensive" => "30 secs",
+                _ => "Unknown rest time"
+            };
+
+            string notes = "Weight light enough to complete all sets/reps!!";
+
+            // Return workout details, including sets, reps, and rest time
+            string[] workoutDetails = { $"{firstWorkout} and {secondWorkout}", sets, reps, restTime, notes};
+
+            // Debugging log
+            Console.WriteLine($"Generated workout details: {string.Join(", ", workoutDetails)}");
+
+            return workoutDetails;
         }
+
     }
 }
-
-    
-
-
-    
 

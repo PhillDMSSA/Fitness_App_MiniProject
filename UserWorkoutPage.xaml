@@ -24,21 +24,94 @@
             <Setter Property="FontSize" Value="10" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+
+        <!-- ComboBox Style -->
+        <Style x:Key="WorkoutComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="#FF00FFFF"/>
+            <Setter Property="BorderBrush" Value="DarkOrange"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
-        <DataGrid Name="WorkoutGrid" 
-                  AutoGenerateColumns="True" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch" 
-                  Margin="10" />
-        <Button Content="Generate Workout" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Bottom" 
-                Margin="10" 
-                Width="150" 
-                Click="GenerateWorkout_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Button Content="Back" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,110,0,5" Width="40" Click="BackButtonCal_Click"/>
+        <!-- Selection Panel -->
+        <StackPanel x:Name="SelectionPanel" 
+                    Grid.Row="0" 
+                    Orientation="Vertical" 
+                    Margin="10">
+            <TextBlock Text="Select Muscle Group:" 
+                       Margin="5" 
+                       FontWeight="Bold"/>
+            <ComboBox x:Name="MuscleGroupComboBox" 
+                     Style="{StaticResource WorkoutComboBoxStyle}"/>
+
+            <TextBlock Text="Select Difficulty:" 
+                       Margin="5" 
+                       FontWeight="Bold"/>
+            <ComboBox x:Name="DifficultyComboBox" 
+                     Style="{StaticResource WorkoutComboBoxStyle}"/>
+
+            <Button Content="Add Workout" 
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Width="150" 
+                    Margin="5"
+                    Click="AddWorkout_Click"/>
+        </StackPanel>
+
+        <!-- Workout Grid -->
+        <ScrollViewer Grid.Row="1" 
+              VerticalScrollBarVisibility="Auto" 
+              HorizontalScrollBarVisibility="Auto" 
+              Margin="10">
+            <DataGrid Name="WorkoutGrid" 
+              AutoGenerateColumns="False" 
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch" 
+              Background="White"
+              CanUserResizeRows="False"
+              IsReadOnly="True"
+              GridLinesVisibility="All"
+              HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Muscle Group" Binding="{Binding MuscleGroup}" Width="100"/>
+                    <DataGridTextColumn Header="Difficulty" Binding="{Binding Difficulty}" Width="100"/>
+                    <DataGridTextColumn Header="Workout" Binding="{Binding Workout}" Width="200"/>
+                    <DataGridTextColumn Header="Sets" Binding="{Binding Sets}" Width="80"/>
+                    <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" Width="80"/>
+                    <DataGridTextColumn Header="Rest Time" Binding="{Binding Rest_Time}" Width="100"/>
+                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="250"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Buttons Panel -->
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Back" 
+                    Grid.Column="0"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Width="40" 
+                    Click="BackButtonCal_Click"/>
+
+            <Button Content="Generate Workout" 
+                    Grid.Column="2"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Width="150" 
+                    Click="GenerateWorkout_Click"/>
+        </Grid>
     </Grid>
 </Page>

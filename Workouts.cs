@@ -13,8 +13,8 @@ namespace Fitness_App
         public string Workout {  get; set; }
         public string Sets {  get; set; }
         public string Reps { get; set; }
-        public string SetsReps { get; set; }
         public string Rest_Time { get; set; }
         public string Notes { get; set; }
+        public string Difficulty { get; set; }
     }
 }
