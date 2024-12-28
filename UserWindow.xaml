@@ -90,6 +90,8 @@
                 <Button Content="Chat" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="ButtonMessages_Click" Margin="0,5"/>
                 <Button Content="Data" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Data_Click" HorizontalAlignment="Center" Margin="0,5"/>
                 <Button Content="W.O.T.D" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_Workouts_Click" Margin="0,5"/>
+                <Button Content="Create Workout" FontSize="15" Width="150" Height="50" Style="{StaticResource RoundedButtonStyle}" Click="Button_UserWorkoutPage_Click" Margin="0,5"/>
+
             </StackPanel>
 
                 <!-- Frame to hold dynamic pages -->

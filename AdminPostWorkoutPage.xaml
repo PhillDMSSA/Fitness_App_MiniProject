@@ -91,7 +91,7 @@
                 <Button Content="Back" Width="65" Height="25" Click="BackButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Margin="2.5"/>
 
                 <!-- Save Button -->
-                <Button Content="Save" Width="65" Height="25" Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
+                <Button Content="Post" Width="65" Height="25" Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />
 
                 <!-- Clear Button -->
                 <Button Content="Clear" Width="65" Height="25"  Click="ClearButton_Click" Style="{StaticResource RoundedButtonStyle}" Margin="2.5" />

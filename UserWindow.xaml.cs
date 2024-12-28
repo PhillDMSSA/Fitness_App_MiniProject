@@ -82,6 +82,15 @@ namespace Fitness_App
 
         }
 
+        private void Button_UserWorkoutPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content != addDataPage)
+            {
+                MainFrame.Navigate(new UserWorkoutPage());
+            }
+
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
         {
             if (e.LeftButton == MouseButtonState.Pressed)
