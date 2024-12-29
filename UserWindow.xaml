@@ -30,6 +30,7 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </Window.Resources>
+    
     <Border CornerRadius="10">
         <Border.Background>
             <LinearGradientBrush>

@@ -78,8 +78,8 @@ namespace Fitness_App
                 string workout = WorkoutsComboBox.SelectedItem?.ToString() ?? string.Empty;
                 string dataToSave = $"{FullNameTextBox.Text},{DateTextBox.Text},{workoutType},{workout},{SetTextBox.Text},{RepTextBox.Text},{BurnedCaloriesTextBox.Text},{UserInputTextBox.Text}";
 
-                Directory.CreateDirectory(System.IO.Path.GetDirectoryName(FilePath));
-                Directory.CreateDirectory(UserDataFolder);
+                Directory.CreateDirectory(System.IO.Path.GetDirectoryName(FilePath)); //ensures each user's file (workout data) has the correct directory ready for saving.
+                Directory.CreateDirectory(UserDataFolder); //ensures folder exist
 
                 // Save the content of the TextBox to the file
                 File.AppendAllText(FilePath, dataToSave + Environment.NewLine); //isstead of writing over data its creates a new line 

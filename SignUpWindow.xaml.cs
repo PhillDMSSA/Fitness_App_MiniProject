@@ -40,19 +40,7 @@ namespace Fitness_App
                     MessageBox.Show("All fields are required.");
                     return;
                 }
-                /*
-                if (!int.TryParse(AgeTextBox.Text, out int age) || age <= 0)
-                {
-                    MessageBox.Show("Please enter a valid age.");
-                    return;
-                }
-
-                if (!int.TryParse(WeightTextBox.Text, out int weight) || weight <= 0)
-                {
-                    MessageBox.Show("Please enter a valid weight.");
-                    return;
-                }
-                */
+               
                 // Generate unique username and password
                 string userID = "UID" + UserIdCounter++;
                 string username = $"{FirstNameTextBox.Text.ToLower()}.{LastNameTextBox.Text.ToLower()}";
@@ -100,7 +88,8 @@ namespace Fitness_App
         // Load profiles from a plain text file
         private List<UserProfiles> LoadProfilesFromFile()
         {
-            if (!File.Exists(ProfilesFilePath)) return null;
+            if (!File.Exists(ProfilesFilePath)) 
+                return null;
             try
             {
                 var profiles = new List<UserProfiles>();

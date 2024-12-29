@@ -12,7 +12,7 @@ namespace Fitness_App
     }
     public partial class MainWindow : Window
     {
-        private Dictionary<string, string> Users = new Dictionary<string, string>();
+        private Dictionary<string, string> Users = new Dictionary<string, string>(); //stores username and password
         private const string UserAndPassFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\UserName_Passwords.txt"; //User name and password file path
         private const string ProfilesFilePath = @"C:\Users\phillipdeleon\source\repos\Coding_Practice\Fitness_App\AddDataPage_Data\Profiles.txt"; // Corrected file path for profiles
 
@@ -96,7 +96,7 @@ namespace Fitness_App
 
                    
                     
-                    // Check if the entered username and password match any stored pair | unable to just enter and random strings | ***could login with somehting random without this statement******
+                    // Check if the entered username and password match any stored pair | unable to just enter and random strings | ***could login with something random without this statement******
                     if (storedUsername.Equals(username.Trim(), StringComparison.OrdinalIgnoreCase) &&
                         storedPassword.Equals(password.Trim()))
                     {
@@ -148,7 +148,6 @@ namespace Fitness_App
                 else
                 {
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    UsernameTextBox.Clear();
                     PasswordTextBox.Clear();
                 }
             }
