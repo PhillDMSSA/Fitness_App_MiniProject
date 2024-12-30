@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Fitness_App
 {
@@ -27,17 +28,19 @@ namespace Fitness_App
             UserIdCounter = Profiles.Count > 0 ? Profiles.Count + 1 : 1; //? (Temaray Operator) = shorthand for if-else statement. If a profile is not created count will start at :1 or Id + 1
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) //allows the mouse to drap application w/ left button on mouse
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 // Input validation
-                if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) ||
-                    string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
-                    string.IsNullOrWhiteSpace(GenderTextBox.Text) ||
-                    string.IsNullOrWhiteSpace(GoalTextBox.Text))
+                if (!ValidateInputs(out int age, out int weight))
                 {
-                    MessageBox.Show("All fields are required.");
                     return;
                 }
                
@@ -194,6 +197,64 @@ namespace Fitness_App
                 password[i] = chars[random.Next(chars.Length)];
             }
             return new string(password);
+        }
+
+        private bool ValidateInputs(out int age, out int weight)
+        {
+            age = 0;
+            weight = 0;
+            
+
+            if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) ||
+               string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
+               string.IsNullOrWhiteSpace(AgeTextBox.Text) ||
+                string.IsNullOrWhiteSpace(GenderTextBox.Text) ||
+                string.IsNullOrWhiteSpace(WeightTextBox.Text) ||
+                string.IsNullOrWhiteSpace(GoalTextBox.Text))
+            {
+                MessageBox.Show("All fields must be filled out!");
+                return false;
+            }
+
+            if (!IsAlpha(FirstNameTextBox.Text) || (!IsAlpha(LastNameTextBox.Text)))
+            {
+                MessageBox.Show("First and Last Name must contain only alphabetic characters.");
+                return false;
+            }
+
+            if (!int.TryParse(AgeTextBox.Text, out age) || age < 16)
+            {
+                MessageBox.Show("You must be between at least 16 to use this app!");
+                return false;
+            }
+            if(!int.TryParse(WeightTextBox.Text, out weight) || weight <= 0)
+            {
+                MessageBox.Show("You must enter a valid weight");
+                return false;
+            }
+            string gender = GenderTextBox.Text.Trim().ToLower();
+            if (gender != "male" && gender != "female")
+            {
+                MessageBox.Show("Gender must be one of the following: Male or Female");
+                return false;
+            }
+            return true;
+
+        }
+
+        private bool IsAlpha(string input) //Only letters 
+        {
+
+            return input.All(char.IsLetter);
+        }
+
+        private void Button_Back_To_Log_In_Click(object sender, EventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
         }
     }
 

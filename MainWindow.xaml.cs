@@ -165,6 +165,8 @@ namespace Fitness_App
                 // Update the Users dictionary after a successful sign-up
                 LoadUsers();
             }
+            Window currentWindow = Window.GetWindow(this);
+            currentWindow?.Close();
         }
 
         // Load user profiles from the correct file
