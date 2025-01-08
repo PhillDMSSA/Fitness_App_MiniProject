@@ -1,4 +1,4 @@
 
-User|Coach|hey coach|12/17/2024 8:35:38 PM|User
-Coach|User|Phil, good workout today! keey up the good work!!|12/17/2024 8:36:14 PM|Coach
-Coach|User|hello|12/19/2024 3:27:21 PM|Coach
+phillip.deleon|Coach|Great workout today!|1/3/2025 6:03:43 PM|phillip.deleon
+Coach|User|glad you like it Phillip, keep it up!|1/3/2025 6:05:48 PM|Coach
+User|Coach|Thanks!|1/3/2025 6:53:10 PM|User

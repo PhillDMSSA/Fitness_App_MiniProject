@@ -1,3 +1,4 @@
 
 Phillip Deleon,23DEC2024,Back,Deadlifts,8,5,156,WORKOUT!!!
 John Doe,23DEC2024,Cardio,Jump Rope,12,5,1825,test
+phillip.deleon,07JAN2025,Back,Deadlifts,8,5,330,good workout
